@@ -1,0 +1,43 @@
+.row
+  - box 12, "Listing Events" do
+    %table.table.table-striped.table-bordered.table-hover.dataTable
+      %thead
+        %tr
+          %th Actions
+          %th Name
+          %th Status
+          %th Start
+          %th Finish
+          %th Event url
+          %th Event reports url
+          %th Landing location
+          %th Colour
+          %th Publish event
+          %th Event image
+          %th Description
+          %th Comments
+          %th Venue
+      %tbody
+        - @events.each do |event|
+          %tr
+            %td
+              = link_to 'Show', event_path(event)
+              |
+              = link_to 'Edit', edit_event_path(event, :venue_id => params[:venue_id])
+              |
+              = link_to 'Destroy', event_path(event), :method => :delete, :data => { :confirm => 'Are you sure?' }
+            %td= event.name
+            %td= event.status
+            %td= event.start
+            %td= event.finish
+            %td= event.event_url
+            %td= event.event_reports_url
+            %td= event.hall.name if event.hall
+            %td= event.colour
+            %td= event.publish_event
+            %td= image_tag event.event_image.assets.url, :width => 100 if event.event_image 
+            %td= event.description
+            %td= event.comments
+            %td= event.venue.name if event.venue
+
+    = link_to 'New Event', new_venue_event_path, :class => "btn btn-primary"

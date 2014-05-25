@@ -1,0 +1,15 @@
+=render partial: '_shared/control/modal_popup', locals: {background: "transparent"}
+.knowledgeHall
+  .navBar
+    .resultsPlaceText
+      Viewing results
+      =(@linked_content.current_page - 1) * @linked_content.limit_value + 1
+      ="-"
+      =(@linked_content.current_page - 1) * @linked_content.limit_value + @linked_content.size
+      of 
+      =@linked_content.total_count
+      results
+    #paginator.paginationControls
+      =paginate @linked_content, theme: "knowledge_hall"
+  .contentArea
+    =render partial: "halls/knowledge_hall_styles/knowledge_library_content"

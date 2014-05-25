@@ -1,0 +1,12 @@
+.exhibition_hall_title
+	.row
+		.col-md-1
+			- if @prev_hall
+				.previous{'data-toggle' => 'tooltip', 'data-placement' => 'bottom', 'title' => @prev_hall.name }
+					= link_to fa_icon("arrow-circle-o-left"), venue_venue_hall_visit_path(@hall.venue, @prev_hall)
+		.col-md-10.fuzzy-background
+			= @hall.name
+		.col-md-1
+			- if @next_hall
+				.next{'data-toggle' => 'tooltip', 'data-placement' => 'bottom', 'title' => @next_hall.name}
+					= link_to fa_icon("arrow-circle-o-right"), venue_venue_hall_visit_path(@hall.venue, @next_hall)

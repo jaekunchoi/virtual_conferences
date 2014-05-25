@@ -1,0 +1,33 @@
+.row
+  - box 6, "Product details", {:Edit => edit_product_path(@product), :Back => products_path} do
+    %p
+      %b Name:
+      = @product.name
+    %p
+      %b Description:
+      %div
+        = raw @product.description
+    %p
+      %b Product url:
+      = @product.product_url
+    %p
+      %b Image:
+      = image_tag @product_logo_url, width: "300px"
+    %p
+      %b Request info:
+      = boolean_YN(@product.request_info)
+    %p
+      %b Email notification:
+      = boolean_YN(@product.email_notification)
+    %p
+      %b Emails:
+      = @product.emails
+    %p
+      %b User:
+      = @product.user.name
+    %p
+      %b Created at:
+      = @product.created_at
+    %p
+      %b Updated at:
+      = @product.updated_at

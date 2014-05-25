@@ -1,0 +1,10 @@
+.row
+  - box 4, "Select a venue" do
+    = label_tag "Select from list of venues below"
+    = select_tag(:venues, options_for_select(@venues), prompt: "Select a venue", class: "form-control chosen",
+      data: { remote: true, url: url_for( controller: :venues, action: :show, id: :id) })
+
+  - unless browser.ie8?
+    - box 8, "Event calendar" do
+      .row#fullCalendar
+        #calendar.col-lg-12

@@ -1,0 +1,33 @@
+.row
+  - box 12, "Listing venues" do
+    %table.table.table-striped.table-bordered.table-hover.dataTable
+      %thead
+        %tr
+          %th Actions
+          %th Logo
+          %th Name
+          %th User
+          %th Colour
+          %th Background image
+      %tbody
+        - @venues.each do |venue|
+          %tr
+            %td
+              = link_to 'Show', venue
+              = link_to 'Edit', edit_venue_path(venue)
+              = link_to 'Destroy', venue, :method => :delete, :data => { :confirm => 'Are you sure?' }
+            %td
+              - if venue.uploaded_file
+                .thumbnail
+                  %img{ :src => venue.uploaded_file.assets.url, :width => "100px", :height => "100px" }
+            %td= venue.name
+            %td= venue.user.email
+            %td
+              %div{ :style => "background:#{venue.colour};width:25px;height:25px" }
+            %td
+              - if venue.background_image
+                = image_tag venue.background_image.assets.url, { style: "width: 100px;" }
+
+    %br
+
+    = link_to 'New Venue', new_venue_path, :class => "btn btn-primary"

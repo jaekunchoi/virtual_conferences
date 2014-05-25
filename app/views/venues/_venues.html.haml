@@ -1,0 +1,42 @@
+- box 6, "Select from list of available venues" do
+  %table.table.table-striped.table-bordered.dataTable2
+    %thead
+      %tr
+        %th Venue name
+        %th Event Details
+    %tbody
+      - @venues.each do |venue|
+        %tr
+          %td
+            = link_to venue.name, venue_path(venue)
+            %br
+            %br
+            - if venue.uploaded_file
+              .thumbnail
+                %img{ :src => venue.uploaded_file.assets.url, :width => "100px", :height => "100px" }
+          %td 
+            - venue.events.each do |event|
+              - if event.status == 'Live' 
+                - state = 'success'
+              - else
+                - state = 'info'
+              .panel{ :class => "panel-#{state}" }
+                .panel-heading
+                  = link_to event.name, event_path(event)
+                  %small
+                    %strong= "(Id: #{event.id})"
+                  %span.pull-right
+                    = "#{event.status} "
+                    = fa_icon 'thumbs-o-up'
+
+                .panel-body
+                  %ul
+                    %li 
+                      Live from: 
+                      %strong= event.start
+                    %li 
+                      URL: 
+                      %strong= link_to (event.event_url.empty? ? "none" : event.event_url), event_visit_path(event)
+  .row
+    .col-md-offset-9.col-md-3
+      = link_to 'Create new Venue', new_venue_path, :class => "btn btn-primary btn-block"

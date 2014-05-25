@@ -1,0 +1,8 @@
+#webcast
+	= render 'webcast_settings'
+	.row
+		- box 6, "Editing webcast", {"Show" => webcast_path(@webcast), "Back" => hall_webcasts_path(@hall)} do
+			= render 'form'
+		- box 6, "View template details", nil, 'inverse' do
+			#view-template-details
+

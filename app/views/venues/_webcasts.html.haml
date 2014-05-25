@@ -1,0 +1,20 @@
+- box 6, "Select from list of available webcasts" do
+  %table.table.table-striped.table-bordered.table-hover.dataTable
+    %thead
+      %tr
+        %th Id
+        %th Name
+        %th Hall
+        %th Webcast type
+        %th Media type
+        %th Details
+    %tbody
+      - @webcasts.each do |webcast|
+        %tr
+          %td= webcast.id
+          %td= link_to webcast.name, webcast
+          %td= webcast.hall.name
+          %td= webcast.webcast_type
+          %td= webcast.media_type
+          %td= webcast.details
+            

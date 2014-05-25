@@ -1,0 +1,38 @@
+.row
+  - box 12, "Process Completed" do
+    - if @csv_export_status
+      .alert.alert-info
+        %ul
+          %li= "Job status: #{@csv_export_status.status}"
+          %li= "#{@csv_export_status.pct_complete}% complete"
+          %li= "Time exported: #{@csv_export_status.time}"
+    - if current_user.csv_file.present? and @csv_export_status.status == "completed"
+      -if current_user.csv_file.assets.url
+        -content=""
+        -if current_user.csv_file.assets.url.start_with?("/")
+          -content = IO.read(Rails.public_path.to_s+current_user.csv_file.assets.url.sub(/\?.+/,""))
+        -else
+          -content = open(URI.parse(current_user.csv_file.assets.url)).read
+        -content.each_line do |line|
+          %p
+            -line.split("*").each_with_index do |linetxt, index|
+              =linetxt if index % 2 == 0
+              -unless index % 2 == 0
+                %b{style:"min-width: "+(index == 1 ? "80" : "0")+"px;"}
+                  =linetxt
+          -if line.blank?
+            %br
+    
+    -outputFile = session[:processOutputFile]
+    -if outputFile
+      -IO.read(outputFile).each_line do |line|
+        %p
+          -line.split("*").each_with_index do |linetxt, index|
+            =linetxt if index % 2 == 0
+            -unless index % 2 == 0
+              %b{style:"min-width: "+(index == 1 ? "80" : "0")+"px;"}
+                =linetxt
+        -if line.blank?
+          %br 
+      -File.unlink(outputFile)
+      -session[:processOutputFile] = nil

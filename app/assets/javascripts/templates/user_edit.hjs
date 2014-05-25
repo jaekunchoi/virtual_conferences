@@ -1,0 +1,7 @@
+<form {{action save on="submit"}}>
+	{{partial 'user_edit_fields'}}
+  <div class="form-group">
+    {{submitButton 'Edit User'}}
+    <a href="javascript:;" {{action 'cancel'}}>Cancel</a>
+  </div>
+</form>

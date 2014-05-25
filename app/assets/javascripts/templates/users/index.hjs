@@ -1,0 +1,58 @@
+<div class="box dark">
+	<header>
+		<div class="icons"><i class="fa fa-edit"></i></div>
+		<h5>Users</h5>
+	</header>
+	<div id="users" class="body">
+		<table id="dataTable" class="table table-bordered table-condensed table-hover table-striped responsive-table">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Email</th>
+					<th>Title</th>
+					<th>First name</th>
+					<th>Last name</th>
+					<th>Position</th>
+					<th>Work phone</th>
+					<th>Company</th>
+					<th>Sign in count</th>
+					<th>Last sign in IP</th>
+					<th>Confirmed at</th>
+					<th>Created at</th>
+					<th>Role</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each}}
+				<tr>
+					<td>{{id}}</td>
+					<td>{{email}}</td>
+					<td>{{title}}</td>
+					<td>{{first_name}}</td>
+					<td>{{last_name}}</td>
+					<td>{{position}}</td>
+					<td>{{work_phone}}</td>
+					<td>{{company}}</td>
+					<td>{{sign_in_count}}</td>
+					<td>{{last_sign_in_ip}}</td>
+					<td>{{confirmed_at}}</td>
+					<td>{{created_at}}</td>
+					<td>
+						{{#each role in roles}}
+							{{role.name}}
+						{{/each}}
+					</td>
+					<td>
+						{{#linkTo 'user' this class='btn btn-sm btn-primary'}}Show{{/linkTo}}
+						<a href="javascript:;" {{action delete this}} class="text-danger">Delete</a>
+					</td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+{{outlet}}

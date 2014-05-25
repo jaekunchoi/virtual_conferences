@@ -1,0 +1,178 @@
+.carousel.slide{:id => "homepage-carousel"}
+  %ol.carousel-indicators
+    %li{"data-target" => "#homepage-carousel", "data-slide-to" => "0", :class => "active"}
+    %li{"data-target" => "#homepage-carousel", "data-slide-to" => "1"}
+    %li{"data-target" => "#homepage-carousel", "data-slide-to" => "2"}
+  .carousel-inner
+    .item.active
+      = image_tag "vcf_header.jpg", alt: "First Slide"
+      .container
+        .carousel-caption
+          %h1
+            Events
+          %p
+            Welcome to the world of Virtual Conferencing. Here you can find important information regarding current issues within Companies & Local Government via our online Events. Our Conferences include content from live Webcasts, Booths, Discussion Forums & Chats.
+          %p
+            %a.btn.btn-large.btn-primary{:href => "#"}
+              Find out more
+
+    .item
+      = image_tag "vcf_header2.jpg", alt: "Second Slide"
+      .container
+        .carousel-caption
+          %h1
+            Products
+          %p
+            We offer a vast range of products & packages for your companies needs. Please browse through our selection, or contact us for further information.
+          %p
+            %a.btn.btn-large.btn-primary{:href => "#"}
+              Browse gallery
+    .item
+      = image_tag "vcf_header3.jpg", alt: "Third Slide"
+      .container
+        .carousel-caption
+          %h1
+            Demo Event
+          %p
+            Our Demo Event will give you a tour the Main Hall, Conference & Exhibition Halls, as well as an interactive Sponsor Booth. To view our Demo Event, please click on the link below.
+          %p
+            %a.btn.btn-large.btn-primary{:href => "#"}
+              Find out more
+
+  %a.left.carousel-control{:href => "#homepage-carousel", "data-slide" => "prev"}
+    %span.glyphicon.glyphicon-chevron-left
+  %a.right.carousel-control{:href => "#homepage-carousel", "data-slide" => "next"}
+    %span.glyphicon.glyphicon-chevron-right
+
+.container.marketing
+  .row
+    .col-lg-4
+      = image_tag "vcf_circle.jpg", alt: "General Placeholder", :class => "featured-small img-circle"
+      %h2
+        Virtual Careers Fair
+      %p
+        Welcome to the world of Virtual Conferencing. Here you can find important information regarding current issues within Companies & Local Government via our online Events. Our Conferences include content from live Webcasts, Booths, Discussion Forums & Chat.
+
+      %p
+        %a.btn.btn-default{:href => "#"}
+          View details
+    .col-lg-4
+      = image_tag "vcf_circle2.jpg", alt: "General Placeholder", :class => "featured-small img-circle"
+      %h2
+        Products
+      %p
+        We offer a vast range of products & packages for your companies needs. Please browse through our selection, or contact us for further information.
+      %p
+        %a.btn.btn-default{:href => "#"}
+          View details
+    .col-lg-4
+      = image_tag "vcf_circle3.jpg", alt: "General Placeholder", :class => "featured-small img-circle"
+      %h2
+        Demo Event
+      %p
+        Our Demo Event will give you a tour the Main Hall, Conference & Exhibition Halls, as well as an interactive Sponsor Booth. To view our Demo Event, please click on the link below.
+      %p
+        %a.btn.btn-default{:href => "#"}
+          View details
+  %hr.featurette-divider
+
+  .row.featurette
+    .col-md-7
+      %h2.featurette-heading
+        Latest News:
+      %p.lead
+        %p.lead
+          LG News is a news service for senior management of local governments providing news briefs, best practice and innovation ideas, diary dates and senior job vacancies relevant to councils across Australia.  Local Government News is edited by Ben Hutchison.   LG News is a division of CommStrat.
+        %p.lead
+          Similarly, the conference division produces up to 20 annual conferences with industry and association partners who benefit from CommStrat’s extensive marketing databases and professional conference team. CommStrat can assist associations to generate revenue, increase public awareness, and attract and retain new members.
+
+
+    .col-md-5
+      = image_tag "vcf_square.jpg", alt: "LG Jobs", class: "featurette-image img-responsive"
+
+  %hr.featurette-divider
+
+  .row.featurette
+    .col-md-5
+      = image_tag "vcf_square2.jpg", alt: "LG Jobs", class: "featurette-image img-responsive"
+    .col-md-7
+      %h2.featurette-heading
+        Testimonials:
+      %p.lead
+        "By having a virtual booth at the LG 2.0 conference, easygovernment was able to tap into a vast number of government contacts, whilst keeping our marketing expenditure at a minimum. Without having to leave the office, we had more traffic to our booth than what we would have had at a live conference, and our day to day operations remained unchanged – a great advantage for a small team!  Brian and Ebony were both amazingly helpful and great to deal with.  They made sure that as a sponsor, we were taken care of and that we received a high amount of value for our investment.  We look forward to working with CommStrat again in the future."
+      %span - Erin Petrys, BRS – Easy Government
+
+
+  %hr.featurette-divider
+
+  .row.featurette
+    .col-md-7
+      %h2.featurette-heading
+        Calendar
+      %p.lead
+        Please click through the below Calendar of Events to view our current & future events and click on selected event for further information.
+      #calendar.well.well-sm
+    .col-md-5
+      = image_tag "vcf_square3.jpg", alt: "LG Jobs", class: "featurette-image img-responsive"
+
+  %hr.featurette-divider
+
+:javascript
+  $(function(){
+    var calendar, d, date, m, y;
+
+    date = new Date();
+    d = date.getDate();
+    m = date.getMonth();
+    y = date.getFullYear();
+
+    calendar = $("#calendar").fullCalendar({
+      header: {
+        left: "prev,today,next,",
+        center: "title",
+        right: "month,agendaWeek,agendaDay"
+      },
+      selectable: false,
+      selectHelper: true,
+      select: function(start, end, allDay) {
+        var title;
+        title = prompt("Event Title:");
+        if (title) {
+          calendar.fullCalendar("renderEvent", {
+            title: title,
+            start: start,
+            end: end,
+            allDay: allDay
+          }, true);
+        }
+        return calendar.fullCalendar("unselect");
+      },
+      editable: false,
+      events: function(start, end, callback){
+        $.ajax({
+            url: '/events/all_events_public',
+            dataType: 'json',
+            data: {
+                // our hypothetical feed requires UNIX timestamps
+                start: Math.round(start.getTime() / 1000),
+                end: Math.round(end.getTime() / 1000)
+            },
+            success: function(doc) {
+                var events = [];
+                $(doc.events).each(function() {
+                    events.push({
+                        title: $(this).attr('name'),
+                        start: $(this).attr('start'), // will be parsed
+                        end: $(this).attr('finish'),
+                        className: "label label-success",
+                        allDay: false,
+                        url: '/events/' + $(this).attr('id')
+                    });
+                });
+                callback(events);
+            }
+        });
+      }
+    });
+  });
+

@@ -1,0 +1,67 @@
+.row
+  - box 6, "Show event", { 'Edit' => edit_event_path(@event), 'Back' => venue_events_path(@event.venue), 'Visit' => event_visit_path(@event)} do
+
+    %p
+      %b Name:
+      = @event.name
+    %p
+      %b Status:
+      = @event.status
+    %p
+      %b Start:
+      = @event.start
+    %p
+      %b Finish:
+      = @event.finish
+    %p
+      %b Event url:
+      = @event.event_url
+    %p
+      %b Event reports url:
+      = @event.event_reports_url
+    %p
+      %b Landing location:
+      = @event.hall.name if @event.hall
+    %p
+      %b Logo1:
+      = image_tag @event_logo1
+    %p
+      %b Logo2:
+      = image_tag @event_logo2
+    %p
+      %b Top bar background:
+      = image_tag @top_bar_background
+    %p
+      %b Colour:
+      = @event.colour
+    %p
+      %b Publish event:
+      = @event.publish_event
+    %p
+      %b Event image:
+      = image_tag @event_image
+    %p
+      %b Description:
+      = @event.description
+    %p
+      %b Search keywords:
+      = @event.search_keywords
+    %p
+      %b Closed event redirect:
+      = @event.closed_event_redirect
+    %p
+      %b Comments:
+      = @event.comments
+    %p
+      %b Venue:
+      = @event.venue.name if @event.venue
+
+  - box 6, "Registered users", nil, "inverse" do
+    - @event.users.each do |user|
+      %span.label
+        = link_to(user.name, edit_user_path(user))
+
+  - if(current_user.has_role?(:vendor) || current_user.has_role?(:admin))
+    - box 6, "Registration page", nil, "inverse" do
+      %br
+      = link_to 'Create new registration page', event_registration_page_path(@event), class: "btn btn-primary"

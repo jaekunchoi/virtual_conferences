@@ -1,0 +1,61 @@
+#top.topNavigationMenu
+  %nav.navbar.navbar-inverse.navbar-static-top.navbar-fixed-top
+    %header.navbar-header
+      %button{:class => "navbar-toggle", "data-toggle" => "collapse", "data-target" => ".navbar-ex1-collapse"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+
+    .pull-right
+      %ul.nav.navbar-nav
+        - unless browser.ie8?
+          %li{:style => "padding:10px;"}
+            .btn-group
+              %a{"data-placement" => "bottom", "title" => "Message", :href => "javascript:;", "data-toggle" => "tooltip", :class => "btn btn-default btn-sm", id: "chat-messages"}
+                = fa_icon "comments"
+          %li.userSection.dropdown{:style => "width:200px;"}
+            %a{:href => "javascript;;", :class => "dropdown-toggle", "data-toggle" => "dropdown"} 
+              -if @image_url.present?
+                .userIcon
+                  %img.media-object.img-thumbnail.user-img{:alt => "User Picture", :src => @image_url}
+              -else
+                .noUserIcon
+                  %span.glyphicon.glyphicon-user
+              .userDetailsSection
+                = current_user.name
+                %b.caret
+            %ul.dropdown-menu
+              %li= link_to "Update my profile", edit_user_registration_path
+              %li= link_to "Sign out", destroy_user_session_path, :method=>'delete'
+
+
+    .collapse.navbar-collapse.navbar-ex1-collapse
+      %ul.nav.navbar-nav
+        
+        -unless params[:controller] == 'venues' and params[:action] == 'dashboard'
+          %li
+            =link_to "My Events", root_path
+          -if @venue.present? and (params[:action] != 'new')
+          
+            = render partial: '/layouts/user_nav_hall_button', locals: { halls: @venue.main_halls}
+
+            = render partial: '/layouts/user_nav_hall_button', locals: { halls: @venue.knowledge_halls}
+            
+            = render partial: '/layouts/user_nav_hall_button', locals: { halls: @venue.exhibition_halls, dropdown_title: "Exhibition Hall"}
+
+                
+        - if browser.ie8?
+          %li{:style => "padding:10px;"}
+            .btn-group
+              %a{"data-placement" => "bottom", "title" => "Message", :href => "#", "data-toggle" => "tooltip", :class => "btn btn-default btn-sm"}
+                = fa_icon "comments"
+          %li.dropdown{:style => "width:200px;"}
+            %a{:href => "javascript;;", :class => "dropdown-toggle", "data-toggle" => "dropdown"} 
+              - if @image_url.present?
+                %img.media-object.img-thumbnail.user-img{:alt => "User Picture", :src => @image_url, :style => "width: 60px;height: 35px;float: left;margin-right: 10px;margin-top: -5px;"}
+              = current_user.name
+              %b.caret
+            %ul.dropdown-menu
+              %li= link_to "Update my profile", edit_user_registration_path
+              %li= link_to "Sign out", destroy_user_session_path, :method=>'delete'

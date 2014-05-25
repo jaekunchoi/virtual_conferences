@@ -1,0 +1,16 @@
+- box 6, 'Show moderated chat', {'Edit' => edit_moderated_chat_path(@moderated_chat), 'Back' => moderated_chats_path } do
+  %p
+    %b Message:
+    = @moderated_chat.message
+  %p
+    %b Webcast:
+    = "#{@moderated_chat.webcast.name} (#{@moderated_chat.webcast.id})" if @moderated_chat.webcast
+  %p
+    %b From user:
+    = @moderated_chat.from_user_id
+  %p
+    %b To user:
+    = @moderated_chat.to_user_id
+  %p
+    %b Approved:
+    = @moderated_chat.approved

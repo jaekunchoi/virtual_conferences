@@ -1,0 +1,43 @@
+.row
+  - box 12, "Listing Halls" do
+    %table.table.table-striped.table-bordered.table-hover.dataTable
+      %thead
+        %tr
+          %th Actions
+          %th Name
+          %th Template
+          %th Background
+          %th Colour
+          %th Greeting
+          %th Greeting type
+          %th Greeting enable
+          %th Jumbotron
+          %th Jumbotron enable
+          %th Hall type
+          %th Venue
+      %tbody
+        - @halls.each do |hall|
+          %tr
+            %td
+              = link_to 'Show', hall_path(hall)
+              |
+              = link_to 'Edit', edit_hall_path(hall)
+              |
+              = link_to 'Destroy', hall_path(hall), :method => :delete, :data => { :confirm => 'Are you sure?' }
+              |
+              = link_to 'Visit', venue_venue_hall_visit_path(hall.venue, hall)
+            %td= hall.name
+            %td= "#{hall.template.name} (Id: #{hall.template_id})" if hall.template
+            %td= "#{hall.background.name} (Id: #{hall.background_id})" if hall.background
+            %td= hall.colour
+            %td= hall.greeting
+            %td= hall.greeting_type
+            %td= hall.greeting_enable
+            %td= hall.jumbotron
+            %td= hall.jumbotron_enable
+            %td= hall.hall_type
+            %td= link_to hall.venue.name, hall.venue
+
+    %br
+
+    = link_to 'New Hall', new_venue_hall_path, :class => "btn btn-primary"

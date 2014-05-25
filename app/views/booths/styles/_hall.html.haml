@@ -1,0 +1,89 @@
+.row
+  .col-md-12
+    #boothHall{ :style => "background:url('#{@booth.template.uploaded_file.assets.url}') no-repeat;" }
+      #backSection
+        = link_to "Back to Exhibition Hall", venue_venue_hall_visit_path(@hall.venue, @hall)
+      #sponsorBanner
+        #sponsorPrevious
+          #arrow
+            = link_to fa_icon("arrow-left"), venue_venue_hall_visit_path(@hall.venue, @next_hall)
+        #sponsorContent
+          #sponsorLogo
+            = image_tag @company_logo_url, class: 'company_logo'
+          #sponsorAbout
+            #header
+              =@booth.name
+            #text
+              =raw clensedText(@booth.top_message)
+        #sponsorNext
+          #arrow
+            = link_to fa_icon("arrow-right"), venue_venue_hall_visit_path(@hall.venue, @next_hall)
+      #contentArea
+        #leftPanel
+          - if @booth.about_us.present?
+            .content-btn{tooltip("View exhibitor info", :left)}
+              %a#about.modal_popup{ :href => booth_about_path(tab: "about")}
+                .btn.textButton
+                  About Us
+          -if get_resources.present?
+            #literatures.content-btn{tooltip("Download resources", :left)}
+              %a#literature.modal_popup{ :href => booth_literature_path, modalwidth: 650}
+                .btn.textButton
+                  Resources
+          -if @booth.button1_label.present?
+            .content-btn{tooltip(@booth.button1_label, :left)}
+              %a#about.modal_popup{ :href => booth_about_path(tab: "button1"), modalwidth: 1000}
+                .btn.textButton
+                  =@booth.button1_label
+        #videoContainer
+          = render partial: 'tv_advertisement_video', locals: {width: 400, height: 250} if(@visualContent.present?)
+          -unless (@visualContent.present?)
+            #tv-advertisement-video
+              =image_tag "no_image_available.jpg", style: "height; 300px"
+        #rightPanel
+          - if @booth.user and @booth.user.status == 'Yes'
+            .booth-chat-btn{tooltip("Booth chat", :right)}
+              %a#booth-chat-btn{ :href => "javascript:;"}
+                .btn.img
+                  = fa_icon "comments-o"
+          .content-btn{tooltip("Leave My Details", :right)}
+            %a#contact.modal_popup{ :href => booth_leave_business_card_path, modalwidth: 650}
+              .btn.img
+                .businessCard
+                  .userOuter
+                    %span.glyphicon.glyphicon-user
+                  %span.glyphicon.glyphicon-list
+          - if @booth.contact_info.present?
+            .content-btn{tooltip("Contact us", :right)}
+              %a#contact.modal_popup{ href: booth_contact_info_path, modalwidth: 550}
+                .btn.img
+                  = fa_icon "envelope"
+      - if !@booth.ticker_message.nil? 
+        -tickerMessage = get_ticker_message_arr()
+        -if tickerMessage.size > 0
+          #tickerContentArea
+            %ul#js-news.js-hidden
+              - get_ticker_message_arr().each do |tickerMessage|  
+                %li.news-item
+                  =raw tickerMessage
+
+= render partial: 'chat', locals: { booth: @booth }
+
+= render partial: '_shared/control/modal_popup', locals: {use_ie_urls: true}
+
+:javascript
+  $(function(){
+    $('#tv-advertisement-video').fadeIn();
+    $('#js-news').ticker({titleText: ''});
+    
+    $('.booth-chat-btn').on('click', function(){
+      $('#chat_widget').show();
+      $('#chat_widget').dialog({
+        resizable: false,
+        height: 450,
+        width: 450,
+        modal: false,
+      });
+      $("#chat_widget .panel-body").animate({ scrollTop: $('#chat_widget .panel-body').height() }, "slow");
+    });
+  });

@@ -1,0 +1,22 @@
+<header class="head">
+  <div class="search-bar">
+    <a class="accordion-toggle btn btn-primary btn-sm visible-xs" data-original-title="Show/Hide Menu" data-placement="bottom" data-toggle="collapse" data-tooltip="tooltip" href="#menu" id="menu-toggle">
+    <i class="fa fa-sort"></i>
+    </a>
+    <form class="main-search">
+      <div class="input-group">
+        <input class="input-small form-control" placeholder="Live Search..." type="text">
+        <span class="input-group-btn">
+        <button class="btn btn-default btn-sm" type="button">
+        <i class="fa fa-search"></i>
+        </button>
+        </span>
+      </div>
+    </form>
+  </div>
+  <div class="main-bar">
+    <h3>
+    <i class="fa fa-home"></i> CommStrat
+    </h3>
+  </div>
+</header>

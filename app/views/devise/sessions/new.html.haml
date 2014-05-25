@@ -1,0 +1,5 @@
+- case request.host
+  - when "virtualcareersfair.com.au", "www.virtualcareersfair.com.au"
+    = render partial: "layout1"
+  - else
+    = render partial: "layout_default"

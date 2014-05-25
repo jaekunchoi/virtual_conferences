@@ -1,0 +1,44 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require default
+ *= require twitter/bootstrap
+ *= require font-awesome
+ *= require_tree ../../../vendor/assets/stylesheets/.
+ *= require ../../../vendor/assets/lib/animate/animate.min
+ *= require ../../../vendor/assets/lib/chosen/chosen.min
+ *= require ../../../vendor/assets/lib/CLEditor1_4_3/jquery.cleditor
+ *= require ../../../vendor/assets/lib/colorpicker/css/colorpicker
+ *= require ../../../vendor/assets/lib/countdown/jquery.countdown
+ *= require ../../../vendor/assets/lib/datatables-responsive/dataTables.bootstrap
+ *= require ../../../vendor/assets/lib/elfinder-2.0-rc1/css/elfinder.min
+ *= require ../../../vendor/assets/lib/fullcalendar-1.6.2/fullcalendar/fullcalendar
+ *= require ../../../vendor/assets/lib/gritter/css/jquery.gritter
+ *= require ../../../vendor/assets/lib/inputlimiter/jquery.inputlimiter.1.0
+ *= require ../../../vendor/assets/lib/magic/magic.min
+ *= require ../../../vendor/assets/lib/plupload/js/jquery.plupload.queue/css/jquery.plupload.queue
+ *= require ../../../vendor/assets/lib/uniform/themes/default/css/uniform.scss
+ *= require ../../../vendor/assets/lib/prettify/prettify
+ *= require ../../../vendor/assets/lib/tablesorter/css/theme.default
+ *= require ../../../vendor/assets/lib/tagsinput/jquery.tagsinput
+ *= require ../../../vendor/assets/lib/validationengine/css/validationEngine.jquery
+ *= require ../../../vendor/assets/lib/zocial/zocial
+ *= require ../../../vendor/assets/lib/bootstrap-modal/bootstrap-modal-bs3patch
+ *= require ../../../vendor/assets/lib/bootstrap-modal/bootstrap-modal
+ *= require ../../../vendor/assets/lib/jquery-ui-bootstrap/jquery-ui-1.10.3.custom
+ *= require ../../../vendor/assets/lib/jasny/css/jasny-bootstrap.min
+ *= require ../../../vendor/assets/lib/bootstrap-datetimepicker/bootstrap-datetimepicker.min
+ *= require ../../../vendor/assets/lib/datatables-responsive/datatables.responsive
+ *= require ../../../vendor/assets/lib/bootstrap-lightbox/bootstrap-lightbox.min
+ *= require ../../../vendor/assets/lib/jQRangeSlider-5.6.0/css/iThing-min
+ *= require ../../../vendor/assets/lib/jquerynewsticker/ticker-style.css.scss
+ *= require overrides
+ */

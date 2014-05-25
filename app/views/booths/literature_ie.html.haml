@@ -1,0 +1,9 @@
+#accordion
+  - @resources.each_with_index do |resource, key|
+    %h3
+      %a{"data-toggle" => "collapse", "data-parent" => "#accordion", :href => "#collapse#{key}"}
+        = resource.name
+    .body
+      %p= resource.description
+      .footer
+        =render partial: "contents/display_content", locals: {content: resource, width: 200, height: 200}

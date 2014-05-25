@@ -1,0 +1,13 @@
+%ul
+  - children_halls.each do |child_hall, child|
+    %li
+      = raw "#{link_to_unless_current(child_hall.name, hall_path(child_hall))} (#{child_hall.hall_type})"
+      - if child_hall.booths
+        %ul
+          - child_hall.booths.each do |booth|
+            %li= link_to booth.name, booth_path(booth)
+      - if child_hall.webcasts
+        %ul
+          - child_hall.webcasts.each do |webcast|
+            %li= link_to webcast.name, webcast_path(webcast)
+      = render partial: 'hall_structure', :locals => { children_halls: child } if child.present?

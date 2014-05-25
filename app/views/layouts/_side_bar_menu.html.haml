@@ -1,0 +1,7 @@
+#left
+    %ul#menu.collapse
+        %li.nav-header
+            Menu 
+        %li.nav-divider
+            - menu_item.each do |item|
+                - sidebar_menu_item item[0], item[1], item[2], item[3], item[4]

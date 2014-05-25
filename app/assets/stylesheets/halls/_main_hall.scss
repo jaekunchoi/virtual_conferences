@@ -1,0 +1,170 @@
+#mainHall {
+  margin-left: auto;
+  margin-right: auto;
+  display: table;
+  
+  .intro {
+    .eventLogo img {
+      max-width: 208px;
+      max-height: 158px;
+    }
+    .eventSection {
+      vertical-align: top;
+      display:table-cell;
+      padding-right:10px;
+      
+      .sponsorLogo img {
+        max-width: 200px;
+        max-height: 150px;
+      }
+    }
+    .sponsorSection {
+      background: white;
+      color: black;
+      font-style: italic;
+      margin-top: 3px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 4px;
+      display: table;
+      text-align: center;
+    }
+    .eventDescription {
+      vertical-align: top;
+      display:table-cell;
+      .replayVideo .fa{
+        @include border-radius("50%");
+        background: white;
+        float:left;
+        font-size: 12px;
+        width: 20px;
+        height: 20px;
+        margin-top: 1px;
+        margin-left: 4px;
+        padding-top: 4px;
+      }
+    }
+  }
+  .knowledgeCenter {
+    .featuredKCContent {
+      margin-top: 10px;
+      margin-left:auto;
+      margin-right:auto;
+      display:table;
+      .contentItem {
+        @include transition("background-color .3s ease-in");
+        display: inline-table;
+        background: #bbb;
+        margin: 5px;
+        width: 173px;
+        height: 155px;
+        display: inline-block;
+        vertical-align: top;
+        color: white;
+        .titleArea {
+          padding: 5px;
+          padding-left: 10px;
+          float: left;
+        }
+        .heading {
+          font-size: small
+        }
+        .subheading {
+          font-size: xx-small
+        }
+        .contentThumbnail {
+          position: absolute;
+          margin-top: 55px;
+        }
+      }
+      .contentItem:hover {
+        background: #c33;
+        text-decoration: none;
+      }
+    }
+  }
+  .boothsList {
+    @include mini-carousel(560px, 100px, 100px, 360px, 200px, 35px, 47px, 32%, 47%);
+    #video-carousel {
+      margin-top: 15px;
+      @include border-radius("5px");
+    }
+    .item{
+      @include border-radius("5px");
+      a {
+        display: inline-block;
+      }
+      .boothGroup {
+        margin-left: auto;
+        margin-right: auto;
+        display: table;
+        .imageFrame {
+          display: inline-flex;
+          margin: 5px;
+          width: 135px;
+          height: 90px;
+          background: white;
+          vertical-align: middle;
+          a {
+            display: table;
+            margin:auto;
+          }
+          img {
+            max-width: 135px;
+            max-height: 90px;
+          }
+        }
+      }
+    }
+    .slider-container{
+      position: relative;
+      .carousel-control{
+        @include border-radius("5px");
+        width:50px;
+        span{
+          left: 32%;
+          top: 40%;
+        }
+      }
+    }
+  }
+  .title{
+    font-size: large;
+    font-weight: bold;
+    text-shadow: 2px 2px 1px #333;
+    text-align: left;
+  }
+  
+  .section {
+    width: 600px;
+    background: rgba(68,68,68,.8);
+    margin: 20px;
+    padding: 20px;
+    color: white;
+    font-size: small;
+    @include border-radius("5px");
+    box-shadow: 0 0 2px rgba(255, 255, 255, 0.2);
+  }
+  .generalButton {
+    @include border-radius("3px");
+    @include transition("background .3s ease-in");
+    background: #999;
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    font-size: larger;
+    padding: 2px;
+    color: white;
+    .fa {
+      @include transition("color .3s ease-in");
+      color: #999;
+    }
+  }
+  .generalButton:hover {
+    background: #0AD;
+    text-decoration: none;
+    .fa {
+      color: #0AD;
+    }
+  }
+}

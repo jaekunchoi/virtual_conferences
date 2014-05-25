@@ -1,0 +1,13 @@
+@import 'mixins_css3';
+@import 'navbar';
+
+.ui-dialog-titlebar {
+  background: #428bca;
+  .ui-dialog-title {
+    color:white;
+  }
+}
+.ui-dialog-titlebar-close:before {
+  content: "x";
+}
+

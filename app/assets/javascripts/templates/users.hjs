@@ -1,0 +1,20 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <span class="glyphicon glyphicon-bookmark"></span> Quick Shortcuts</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+            	{{#linkTo 'users' class='btn btn-success btn-lg' role='button'}}List Users{{/linkTo}}
+            	{{#linkTo 'users.new' class='btn btn-primary btn-lg' role='button'}}Create User{{/linkTo}}
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        {{outlet}}
+    </div>
+</div>

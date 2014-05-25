@@ -1,0 +1,277 @@
+@import 'mixins_css3';
+
+/* Booth
+-------------------------------------------*/
+#boothHall{
+  @extend .visitor-view-container;
+
+  #backSection {
+    padding-top: 5px;
+    padding-left: 30px;
+  }
+
+  #sponsorBanner {
+    margin-top: 5px;
+    width: 100%;
+    background: rgba(66, 66, 66, .8);
+    padding-top: 15px;
+    padding-bottom: 15px;
+    display:table;
+    margin-bottom: 20px;
+
+    #sponsorContent {
+      display:table-cell;
+      background: white;
+      width: 740px;
+      height: 120+20px;
+      @include border-radius("6px");
+      padding:10px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      
+      #sponsorLogo{
+        display: inline;
+        float: left;
+        padding-left: 30px;
+        padding-right: 30px;
+        
+        img{
+          display: block;
+          max-width:180px;
+          max-height:120px;
+          width: auto;
+          height: auto;
+        }
+      }
+      
+      #header{
+        font-weight: bold;
+        font-size: larger;
+      }
+      #text{
+        font-size: smaller;
+      }
+    }
+    
+    @mixin arrow {
+      border: 3px solid white;
+      @include border-radius("50%");
+      width: 60px;
+      height: 60px;
+      padding:6px;
+      padding-left:8px;
+      
+      .fa {
+        color: white;
+        font-size: 40px;
+      }
+    }
+    
+    #sponsorPrevious{
+      display:table-cell;
+      vertical-align: middle;
+      padding-left:40px;
+      #arrow{
+        @include arrow;
+      }
+      display:none;
+    }
+    #sponsorNext{
+      display:table-cell;
+      vertical-align: middle;
+      padding-right:20px;
+      #arrow{
+        @include arrow;
+        padding-left:10px;
+      }
+      display:none;
+    }
+  }
+  
+  #contentArea {
+    background: rgba(66, 66, 66, .8);
+    display: table;
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 1px;
+    
+    #leftPanel {
+      display: table-cell;
+      vertical-align: top;
+      width: 164px;
+    }
+    #videoContainer {
+      display: table-cell;
+      padding-top:25px;
+      padding-bottom:25px;
+      vertical-align: middle;
+      #tv-advertisement-video {
+        .contentMediaDisplay {
+          display: table;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+    }
+    #rightPanel {
+      display: table-cell;
+      vertical-align: top;
+      width: 164px;
+    }
+    a#about{
+      text-decoration: none;
+    }
+    
+    .btn {
+      width:100px;
+      height:100px;
+      text-align: center;
+      margin: 15px;
+      @include transition("background-color .4s ease-in");
+    }
+    a:hover .btn{
+      background: #0AD;
+    }
+    .btn.textButton {
+      background: #999;
+      color: white;
+      @include border-radius("8px");
+      padding-top:40px;
+    }
+    .btn.img {
+      background: #eee;
+      color: #666;
+      @include border-radius("50%");
+      .fa {
+        font-size:50px;
+        padding-top: 18px;
+      }
+      .businessCard {
+        margin-top:20px;
+      }
+    }
+  }
+  
+  .businessCard {
+    border: 3px solid #666;
+    background: #666;
+    padding: 0px;
+    margin: 0px;
+    width: 70px;
+    @include border-radius("4px");
+    display: table;
+    height: 40px;
+    .userOuter {
+      display: table-cell;
+      margin-left: 0px;
+      width: 14px;
+    }
+    .glyphicon-user {
+      background: #eee;
+      color: #666;
+      @include border-radius("5px");
+      margin-top: 2px;
+      margin-bottom: 4px;
+      padding-top: 3px;
+      left: 3px;
+      height: 31px;
+      width: 31px;
+    }
+    .glyphicon-list {
+      margin-top: 0px;
+      color: #eee;
+      display: table-cell;
+      padding-left: 3px;
+      padding-right: 3px;
+    }
+    .glyphicon {
+      font-size: 25px;
+    }
+  }
+                        
+  #tickerContentArea *, #tickerContentArea *:before, #tickerContentArea *:after{
+    -webkit-box-sizing: initial;
+    -moz-box-sizing: initial;
+    box-sizing: content-box;
+  }
+
+  #tickerContentArea {
+    //background: white;
+    margin-left: auto;
+    margin-right: auto;
+    width:820px;
+    .ticker-wrapper {
+      border: 1px solid black;
+      background:  rgba(255, 255, 255, 1);
+      height:37px;
+    }
+    .ticker-content{
+      a {
+        text-decoration: underline;
+      }
+    }
+    .ticker *, .ticker{
+      background:  rgba(255, 255, 255, 1);
+      font-size: large;
+    }
+    .ticker, .ticker-swipe {
+      height:30px;
+    }
+    .ticker-swipe span {
+      height:16px;
+    }
+    .ticker-controls {
+      margin-top: 3px;
+    }
+  }
+  #tv-advertisement-video > img {
+    margin-left: auto;
+    margin-right: auto;
+    display: table;
+  }
+  
+  #tv-advertisement-video{
+    background: black;
+    width:505px;
+    height: 320px;
+    margin-left: auto;
+    margin-right: auto;
+
+
+    @include mini-carousel(485px, 300px, 250px, 360px, 200px, 35px, 47px, 32%, 47%);
+    z-index: 99999;
+    .power-off a{
+      width: 50px;
+      height: 50px;
+      font-size: 25px;
+      margin-top: 10px;
+    }
+    .slider-container{
+      position: relative;
+      .carousel-control{
+        height:210px;
+        width:50px;
+        span{
+          left: 32%;
+        }
+      }
+    }
+    .carousel-inner{
+      object {
+        padding-left:43px;
+      }
+    }
+    .carousel-inner > .item > img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      height: 500px;
+    }
+    
+    
+  }
+}
+

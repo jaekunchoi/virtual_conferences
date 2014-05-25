@@ -1,0 +1,58 @@
+#booths{
+  padding-top: 160px;
+  .row1 {
+    text-align: center;
+    display: flex;
+  }
+  .row2 {
+    text-align: center;
+    margin-top: -65px;
+    display: flex;
+  }
+  .oneRow {
+    margin-top: 70px;
+  }
+  .condensedRow {
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .booth:hover .company-logo {
+    left: 20px;
+      img {
+        width:140px;
+      }
+  }
+  .booth{
+    width: 180px;
+    height: 217px;
+    display: inline-block;
+    text-align: center;
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    .info-centre{
+      top: 100px;
+      position: absolute;
+      img{
+        max-height: 125px;
+        width: 180px;
+      }
+    }
+    .company-logo{
+      img{
+        background: #fff;
+        width: 120px;
+        border: 5px #333333 solid;
+        border-radius: 5px;
+        @include transition("width .3s ease-in");
+      }
+      margin-bottom: 0px;
+      position: absolute;
+      left: 30px;
+      bottom: 75px;
+      @include transition("left .3s ease-in");
+    }
+  }
+}

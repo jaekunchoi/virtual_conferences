@@ -1,0 +1,35 @@
+.row
+  - box 12, "Listing Content" do
+    %table.table.table-striped.table-bordered.table-hover.dataTable
+      %thead
+        %tr
+          %th Actions
+          %th Name
+          %th Content Type
+          %th Booths
+          %th Halls
+          -if view_type.include?(:admin)
+            %th Owner
+      %tbody
+        - @contents.each do |content|
+          %tr
+            %td
+              = link_to 'View', content
+              |
+              = link_to 'Edit', edit_content_path(content)
+              |
+              = link_to 'Delete', content, :method => :delete, :data => { :confirm => 'Are you sure?' }
+            %td= content.name
+            %td= content.content_type
+            %td
+              - content.booths.each do |booth| 
+                %span.labelObjectTag{tooltip(booth.location_name, :top)}
+                  =booth.name
+            %td
+              - content.halls.each do |hall| 
+                %span.labelObjectTag{tooltip(hall.location_name, :top)}
+                  =hall.name
+            -if view_type.include?(:admin)
+              %td{style:"white-space: nowrap"}=content.owner_user.name if content.owner_user
+
+    = link_to 'New Content', new_path, class: 'btn btn-primary'

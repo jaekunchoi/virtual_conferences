@@ -1,0 +1,38 @@
+= simple_form_for(@booth, :url => @url, :html => { :class => "form-horizontal" }, :wrapper => "horizontal", defaults: { :input_html => { class: "form-control"}, label_html: { class: "col-lg-4" } } ) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :name
+    = simple_form_image_paperclip(f, :company_logo)
+    = f.input :company_website
+    = f.input :email
+    = f.input :top_message,:input_html => { style: "height:100px" }
+    = f.association :hall, collection: @venue.halls.where(:hall_type => "Exhibition"), prompt: "Choose a hall", :input_html => { class: 'chosen' }
+    = f.association :template, collection: @templates, prompt: "Choose a template", :input_html => { class: 'chosen' }
+    = f.association :event, collection: @venue.events, prompt: "Choose an event", :input_html => { class: 'chosen' }
+    = f.association :contents, :input_html => { class: "chosen" }
+    = simple_form_image_paperclip(f, :thumbnail_image)
+    = f.input :booth_package, collection: [["Platnum", 1], ["Gold", 2], ["Silver", 3]], prompt: "Select a package" if view_type.include?(:admin)
+    = f.input :contact_info, :input_html => { class: "cleditor" }
+    = f.input :about_us, :input_html => { class: "cleditor" }
+    = f.input :button1_label, label: "Custom Button Label"
+    = f.input :button1_content, input_html: { class: "cleditor" }, label: "Custom Button Content"
+    = f.input :greeting_video if view_type.include?(:admin)
+    = f.input :greeting_video_enabled if view_type.include?(:admin)
+    = f.input :public_chat if view_type.include?(:admin)
+    = f.input :twitter_roll if view_type.include?(:admin)
+    = f.input :twitter_hash_tag if view_type.include?(:admin)
+    = f.input :twitter_url if view_type.include?(:admin)
+    = f.input :linkedin_url if view_type.include?(:admin)
+    = f.input :facebook_url if view_type.include?(:admin)
+    = f.input :survey_url if view_type.include?(:admin)
+    = f.input :prize_giveaway_description if view_type.include?(:admin)
+    = f.input :newsletter_description if view_type.include?(:admin)
+    = f.input :ticker_message,:input_html => {class: "cleditor"}
+    = current_user.has_role?(:admin) ? f.association(:user, label_method: :name_and_email, prompt: "Choose a user", :input_html => { class: "chosen" }) : f.hidden_field(:user_id, value: current_user.id)
+    = f.input :display_mode, collection: [["Information Kiosk window is closed upon entry", "false"], ["Information Kiosk window is open upon entry", "true"]], as: :radio_buttons, input_html: { class: "radio" }
+
+    = simple_form_image_paperclip(f, :booth_main_image) if view_type.include?(:admin)
+    = simple_form_image_paperclip(f, :television_ad, label: 'TV advertisement') if view_type.include?(:admin)
+
+  .form-actions
+    = f.button :submit, :class => "btn btn-primary"

@@ -1,0 +1,13 @@
+<div class="box dark">
+  {{boxHeader 'Create New User'}}
+  <div id="div-1" class="accordion-body body in">
+    <form {{action 'save' on="submit"}}>
+      {{partial 'user_edit_fields'}}
+      <div class="form-group">
+        {{submitButton 'Create New User'}}
+        <a href="javascript:;" {{action 'cancel'}}>Cancel</a>
+      </div>
+    </form>
+  </div>
+  
+</div>

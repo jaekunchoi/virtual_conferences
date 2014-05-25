@@ -1,0 +1,14 @@
+<div id="wrap">
+	{{partial 'user_nav'}}
+	{{partial 'side_menu'}}
+	<div id="content">
+		<div class="outer">
+			<div class="inner" id="inner">
+				<h1>Dashboard</h1>
+				{{ outlet }}
+			</div>
+		</div>
+	</div>
+</div>
+{{partial 'help_modal'}}
+{{partial 'footer'}}

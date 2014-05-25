@@ -1,0 +1,19 @@
+.row
+	- box 6, 'Template information', {'Edit' => edit_template_path(@template), 'Back' => templates_path} do
+		%p
+			%b Name:
+			= @template.name
+		%p
+			%b Jumbotron available:
+			= @template.jumbotron_available
+		%p
+			%b Template type:
+			= @template.template_type
+
+		%p
+			%b Template Sub type:
+			= @template.template_sub_type
+
+		%p
+			%b Template:
+			= image_tag @template.uploaded_file.assets, :width => '500px' if @template.uploaded_file

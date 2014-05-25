@@ -1,0 +1,27 @@
+= simple_form_for(@venue, :html => { :class => "form-horizontal" }, :wrapper => "horizontal", defaults: { :input_html => { class: "form-control"}, label_html: { class: "col-lg-4" } } ) do |f|
+	= f.error_notification
+
+	.form-inputs
+		= f.input :name
+		= f.association :user, label_method: :email, prompt: "Please select an owner", :input_html => { class: "chosen" }
+		= f.input :event_welcome_heading
+		= f.input :event_welcome_text, :input_html => { class: "cleditor" }
+		= simple_form_image_paperclip(f, :background_image)
+		= simple_form_image_paperclip(f, :top_background)
+		= simple_form_image_paperclip(f, :uploaded_file, label: 'Logo')
+		= simple_form_image_paperclip(f, :main_sponsor_logo)
+		= f.input :main_sponsor_url
+		= f.input :sponsor_tagline
+		= f.input :whats_new
+		= f.input :personal_map
+		= f.input :display_webcast_rating
+		= f.input :display_other_content_rating
+		= f.input :closed_event_redirect
+		= f.input :display_on_demand_status
+		= f.input :display_original_broadcast_date
+		= f.input :venue_reports_url
+		= f.input :support_message
+		= f.input :venue_comments
+		= f.input :colour, input_html: { :colourpicker => true }
+	.form-actions
+		= f.button :submit, :class => "btn btn-primary"

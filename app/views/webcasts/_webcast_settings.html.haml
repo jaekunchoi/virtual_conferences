@@ -1,0 +1,330 @@
+.row
+  - box 4, "Left area 1", nil, "inverse", "droppable" do
+    .inner-body{:style => "min-height:300px;"}
+      %table.table.table-striped.table-bordered.table-hover
+        %thead
+          %tr
+            %th Id
+            %th Name
+            %th Type
+            %th From - To
+            %th Actions
+        %tbody
+          - if @resource1.present?
+            %tr
+              %td= @resource1.id
+              %td= @resource1.name
+              %td= @resource1.class.to_s
+              %td
+              %td
+                = link_to("Edit", 'javascript:;', class: "edit")
+                = link_to("Delete", 'javascript:;', class: "delete text-danger")
+
+
+  - box 5, "Mid area 1", nil, "inverse", "droppable" do
+    .inner-body{:style => "min-height:300px;"}
+      %table.table.table-striped.table-bordered.table-hover
+        %thead
+          %tr
+            %th Id
+            %th Name
+            %th Type
+            %th From - To
+            %th Actions
+        %tbody
+          - if @resource2.present?
+            %tr
+              %td= @resource2.id
+              %td= @resource2.name
+              %td= @resource2.class.to_s
+              %td= @resource2.seconds if @resource2.class.to_s == 'Presentation'
+              %td
+                = link_to("Edit", 'javascript:;', class: "edit")
+                = link_to("Delete", 'javascript:;', class: "delete text-danger")
+
+  - box 3, "Widgets" do
+    %ul.list-unstyled
+      %li
+        .panel-group#widget1
+          .panel.panel-default
+            .panel-heading
+              = link_to("#{fa_icon('youtube-play')} Youtube".html_safe, 'javascript:;', class: "btn btn-block btn-danger", "data-parent" => "#widget1", "data-toggle" => "collapse", :href => "#collapse1")
+            #collapse1.panel-collapse.collapse
+              .panel-body
+                = select_tag(:youtube, options_for_select(@youtube), prompt: "Select a video", class: "form-control youtube")
+                %br
+                %ul.list-inline.pull-right
+                  %li= link_to "Videos", videos_path, class: "btn btn-success btn-sm", :target => "_blank"
+                  %li= link_to "New", new_video_path, class: "btn btn-danger btn-sm", :target => "_blank"
+                  %li= link_to "Add to timeline", 'javascript:;', class: "add-to-timeline", :target => "_blank"
+      %li
+        .panel-group#widget2
+          .panel.panel-default
+            .panel-heading
+              = link_to("#{fa_icon('file')} Presentation".html_safe, 'javascript:;', class: "btn btn-block btn-success", "data-parent" => "#widget2", "data-toggle" => "collapse", :href => "#collapse2")
+            #collapse2.panel-collapse.collapse
+              .panel-body
+                = select_tag(:presentation, options_for_select(@presentation), prompt: "Select a presentation", class: "form-control")
+                %br
+                %ul.list-inline.pull-right
+                  %li= link_to "Presentations", presentations_path, class: "btn btn-success btn-sm", :target => "_blank"
+                  %li= link_to "New", new_presentation_path, class: "btn btn-danger btn-sm", :target => "_blank"
+                  %li= link_to "Add to timeline", 'javascript:;', class: "add-to-timeline", :target => "_blank"
+                #slideshare
+
+      %li
+        .panel-group#widget3
+          .panel.panel-default
+            .panel-heading
+              = link_to("#{fa_icon('camera')} Image".html_safe, 'javascript:;', class: "btn btn-block btn-primary", "data-parent" => "#widget3", "data-toggle" => "collapse", :href => "#collapse3")
+            #collapse3.panel-collapse.collapse
+              .panel-body
+                %select.image#image.hide
+                  %option{ :value => 'image' } Image
+                %br
+                = link_to "Add to timeline", 'javascript:;', class: "add-to-timeline", :target => "_blank"
+      %li
+        .panel-group#widget4
+          .panel.panel-default
+            .panel-heading
+              = link_to("#{fa_icon('comments-o')} Chat".html_safe, 'javascript:;', class: "btn btn-block btn-warning", "data-parent" => "#widget4", "data-toggle" => "collapse", :href => "#collapse4")
+            #collapse4.panel-collapse.collapse
+              .panel-body
+                %select.chat#chat.hide
+                  %option{ :value => ':chat' } Chat
+                %br
+                = link_to "Add to timeline", 'javascript:;', class: "add-to-timeline", :target => "_blank"
+      %li
+        .panel-group#widget5
+          .panel.panel-default
+            .panel-heading
+              = link_to("#{fa_icon('group')} Q&A".html_safe, 'javascript:;', class: "btn btn-block btn-info", "data-parent" => "#widget5", "data-toggle" => "collapse", :href => "#collapse5")
+            #collapse5.panel-collapse.collapse
+              .panel-body
+                = select_tag(:hangouts, options_for_select(@hangouts), prompt: "Select a video", class: "form-control hangouts")
+                %br
+                %ul.list-inline.pull-right
+                  %li= link_to "New", new_video_path, class: "btn btn-info btn-sm", :target => "_blank"
+                  %li= link_to "Add to timeline", 'javascript:;', class: "add-to-timeline", :target => "_blank"
+
+.row
+  - box 3, "Left area 2", nil, "inverse", "droppable" do
+    .inner-body{:style => "min-height:200px;"}
+      %table.table.table-striped.table-bordered.table-hover
+        %thead
+          %tr
+            %th Id
+            %th Name
+            %th Type
+            %th From - To
+            %th Actions
+        %tbody
+          - if @resource3.present?
+            %tr
+              %td= @resource3.id
+              %td= @resource3.name
+              %td= @resource3.class.to_s
+              %td
+              %td
+                = link_to("Edit", 'javascript:;', class: "edit")
+                = link_to("Delete", 'javascript:;', class: "delete text-danger")
+
+  - box 6, "Mid area 2", nil, "inverse", "droppable" do
+    .inner-body{:style => "min-height:200px;"}
+      %table.table.table-striped.table-bordered.table-hover
+        %thead
+          %tr
+            %th Id
+            %th Name
+            %th Type
+            %th From - To
+            %th Actions
+        %tbody
+          - if @resource4.present?
+            %tr
+              %td= @resource4.id
+              %td= @resource4.name
+              %td= @resource4.class.to_s
+              %td
+              %td
+                = link_to("Edit", 'javascript:;', class: "edit")
+                = link_to("Delete", 'javascript:;', class: "delete text-danger")
+
+  - box 3, "Right area 2", nil, "inverse", "droppable" do
+    .inner-body{:style => "min-height:200px;"}
+      %table.table.table-striped.table-bordered.table-hover
+        %thead
+          %tr
+            %th Id
+            %th Name
+            %th Type
+            %th From - To
+            %th Actions
+        %tbody
+          - if @resource5.present?
+            %tr
+              %td= @resource5.id
+              %td= @resource5.name
+              %td= @resource5.class.to_s
+              %td
+              %td
+                = link_to("Edit", 'javascript:;', class: "edit")
+                = link_to("Delete", 'javascript:;', class: "delete text-danger")
+
+.row.hide
+  - box 12, "Layer", nil, "inverse" do
+    .row
+      .col-md-1
+        %label{ :for => "time" } Time
+        %input{:type=>"text", :id=>"time", :style=>"border:0; color:#333; font-weight:bold;"}
+      .col-md-11
+        #media-timeline
+    %hr
+    .row
+      .col-md-1
+        %strong Left area 1
+      .col-md-11
+        .slider-range
+
+
+:javascript
+  var flashMovie;
+
+  //Load the flash player. Properties for the player can be changed here.
+  function loadPlayer(slideshare_id, dom_id) {
+    //allowScriptAccess from other domains
+    var params = { allowScriptAccess: "always" };
+    var atts = { id: dom_id };
+
+    //doc: The path of the file to be used
+    //startSlide: The number of the slide to start from
+    //rel: Whether to show a screen with related slideshows at the end or not. 0 means false and 1 is true..
+    var flashvars = { doc : slideshare_id, startSlide : 1, rel : 0 };
+
+    //Generate the embed SWF file
+    swfobject.embedSWF("http://static.slidesharecdn.com/swf/ssplayer2.swf", dom_id, "400", "250", "8", null, flashvars, params, atts);
+
+    //Get a reference to the player
+    flashMovie = document.getElementById(dom_id);
+  }
+
+  //Jump to the appropriate slide
+  function jumpTo(){
+    flashMovie.jumpTo(parseInt(document.getElementById("slidenumber").value));
+  }
+
+  //Update the slide number in the field for the same
+  function updateSlideNumber(){
+    document.getElementById("slidenumber").value = flashMovie.getCurrentSlide();
+  }
+
+  $(function(){
+    $("#widgets li").draggable({
+      revert: "invalid",
+      containment: "document",
+      helper: "clone",
+      cursor: "move"
+    });
+
+    $('.droppable .inner-body').droppable({
+      accept: '#widgets li',
+      activeClass: "droppable-state-active",
+      hoverClass: "droppable-state-hover",
+      drop: function( event, ui ) {
+        var target = $(event.target).find('.panel-collapse');
+        moveWidget(ui.draggable, event.target);
+        console.log($(event.target).closest('.droppable').attr('id'));
+      }
+    });
+
+    function moveWidget( $item, $target ) {
+      $item.fadeOut(function() {
+        var $list = $( "ul", $target ).length ?
+          $( "ul", $target ) :
+          $( "<ul class='ui-helper-reset'/>" ).appendTo( $target );
+        $item.appendTo( $list ).fadeIn();
+      });
+    }
+
+    $( "#media-timeline" ).slider({
+      value: 0,
+      min: 0,
+      max: 500,
+      step: 1,
+      slide: function( event, ui ) {
+        $( "#time" ).val( ui.value + " secs" );
+      }
+    });
+    $( "#time" ).val( $( "#media-timeline" ).slider( "value" ) + " secs"  );
+
+    // Sliders for layers
+    $(".slider-range").rangeSlider();
+    $(".slider-range").on("valuesChanging", function(e, data){
+      console.log("Something moved. min: " + data.values.min + " max: " + data.values.max);
+    });
+
+    $('.youtube, .hangouts').on('change', function(){
+      var top_inner = $(this).closest('.panel-group').attr('id').toString();
+      var inner = $(this).closest('.panel-body').attr('class').toString();
+      $(this).parent().find('iframe').remove();
+      var selector = '#' + top_inner + ' .' + inner;
+      var youtube_id = $(this).val().split(':')[0]
+      var pop = Popcorn.youtube(selector, 'http://www.youtube.com/watch?v=' + youtube_id);
+    });
+
+    $('#presentation').on('change', function(){
+      var top_inner = $(this).closest('.panel-group').attr('id').toString();
+      var inner = $(this).closest('.panel-body').attr('class').toString();
+      $(this).parent().find('iframe').remove();
+      selector = '#' + top_inner + ' .' + inner;
+      slideshare_id = $(this).val().split(':')[0]
+      loadPlayer(slideshare_id, "slideshare");
+    });
+
+    $('#time').countTo({
+        from: 50,
+        to: 1000,
+        speed: 1000,
+        refreshInterval: 50,
+        formatter: function (value, options) {
+            return value.toFixed(options.decimals) / 1000;
+        },
+        onUpdate: function (value) {
+            console.debug(this);
+        },
+        onComplete: function (value) {
+            console.debug(this);
+        }
+    });
+
+    $('.add-to-timeline').click(function(){
+      var value_id = $(this).closest('.droppable').find('select').val().split(':')[1];
+      if(value_id == undefined)
+        return false;
+      var area_id = $(this).closest('.droppable').attr('id');
+      var value = $(this).closest('.droppable').find('select').val();
+      var name = $(this).closest('.droppable').find('select option:selected').text();
+      var type = $(this).closest('.droppable').find('select').attr('id');
+      $(this).closest('.droppable').find('table tbody')
+      .append("<tr><td>" + value_id + "</td><td>" + name + "</td><td>" + type + "</td><td></td><td><a class='edit' href='javascript:;'>Edit</a> | <a class='delete text-danger' href='javascript:;'>Delete</a></td></tr>");
+
+      area_input_id = '#webcast_' + area_id;
+
+      // $('#editingwebcast form').append("<input type='hidden' name='widget' value=''> ");
+      console.log(value_id);
+      console.log(type);
+      console.log(area_input_id);
+
+      area_input_val = '';
+      area_input_val = '{:' + type + ' => "' + value_id + '"}';
+      $(area_input_id).val(area_input_val);
+    });
+
+    $('.delete').click(function(){
+      var area_id = $(this).closest('.droppable').attr('id');
+      area_input_id = '#webcast_' + area_id;
+      $(area_input_id).val('');
+      $(this).closest('tr').remove();
+    });
+
+  });

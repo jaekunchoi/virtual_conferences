@@ -1,0 +1,12 @@
+id,email,title,first_name,last_name,position,work_phone,company,state,industry,mobile,origin,terms,sign_in_count,last_sign_in_at,confirmed_at,created_at,events,roles,booths,booth_closed_message
+4,admin@industryjobsboard.com.au,Mr,Jae,Choi,Web Dev2,123123123,CommStrat,,Industry,,,,28,24-Feb-2014 19:03,11-Nov-2013 06:39,11-Nov-2013 06:26,LG 2.0,booth_rep,City of Boroondara; Woollahra,Test123 chat
+6,ebony.kondys@commstrat.com.au,"",Ebony,Kondys,"","","",,,,,,3,04-Feb-2014 13:39,29-Jan-2014 11:43,29-Jan-2014 11:36,LG 2.0,visitor,"",
+12,info@commstrat.com.au,Mr,Jae,Choi,Job,"","",VIC,Industry,,,,16,21-Feb-2014 11:44,05-Feb-2014 11:43,05-Feb-2014 11:40,LG 2.0,visitor; visitor; admin; admin; admin; admin,"",
+30,jaekun.choi+aaabbb@gmail.com,Mr,Jae,Choi,Web,,CommStrat,VIC,Government,"",,true,0,,,17-Feb-2014 16:41,Event Test,visitor; visitor; booth_rep; booth_rep; booth_rep; booth_rep,"",
+35,shinoj123@gmail.com,,shinoj,manoharan,,,,,,,,true,0,,,24-Feb-2014 12:32,LG 2.0,visitor; visitor; booth_rep; booth_rep; booth_rep; booth_rep,"",
+36,julia.atterton@adelaide.edu.au,,Julia,Atterton,,,,,,,,true,0,,,24-Feb-2014 12:32,LG 2.0,visitor; visitor,"",
+37,raja.pakalapati@gmail.com,,Rajasekhar,Pakalapati,,,,,,,,true,0,,,24-Feb-2014 12:32,LG 2.0,visitor; visitor,"",
+38,chsridevi@gmail.com,,Sridevi,Cherukuri,,,,,,,,true,0,,,24-Feb-2014 12:32,LG 2.0,visitor; visitor; visitor; visitor; visitor; visitor; visitor; visitor; visitor; visitor,"",
+39,devicpokhrel@gmail.com,,Devi,Pokhrel,,,,,,,,true,0,,,24-Feb-2014 12:32,LG 2.0,visitor; visitor; visitor; visitor; visitor; visitor; visitor; visitor; visitor; visitor,"",
+40,anshul1603@gmail.com,,Ekta,Pushkarna,,,,,,,,true,0,,,24-Feb-2014 12:32,LG 2.0,visitor; visitor; visitor; visitor; visitor; visitor; visitor; visitor; visitor; visitor,"",
+41,garyrobertpayne@gmail.com,,Gary,Payne,,,,,,,,true,0,,,24-Feb-2014 12:32,LG 2.0,visitor; visitor; visitor; visitor; visitor; visitor; visitor; visitor; visitor; visitor,"",

@@ -1,0 +1,22 @@
+= simple_form_for(@webcast, :url => @url, :html => { :class => "form-horizontal" }, :wrapper => "horizontal", defaults: { :input_html => { class: "form-control"}, label_html: { class: "col-lg-4" } } ) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :name
+    = f.association(:hall, collection: Hall.where(hall_type: "Knowledge Library"), prompt: "Choose a hall", :input_html => { class: "chosen" }, include_blank: true, :label_method => lambda { |hall| "#{hall.name} (#{hall.venue.events.pluck(:name).join(', ')})" })
+    = f.input :webcast_type
+    = f.input :media_type
+    = f.association :user, prompt: "Choose a user", :input_html => { class: "chosen" } if current_user.has_role? :admin
+    = f.input :user, as: :hidden, :value => current_user.id if !current_user.has_role? :admin
+    = f.input :details
+    = f.association :template, :input_html => { class: "chosen" }
+    = f.input :background_colour, :input_html => { "colourpicker" => "true" }
+    = f.input :start, as: :string, :input_html => { class: "datetimepicker form-control" }
+    = f.input :finish, as: :string, :input_html => { class: "datetimepicker form-control" }
+    = f.input :leftarea1, as: :hidden
+    = f.input :midarea1, as: :hidden
+    = f.input :leftarea2, as: :hidden
+    = f.input :midarea2, as: :hidden
+    = f.input :rightarea2, as: :hidden
+
+  .form-actions
+    = f.button :submit, class: "btn btn-primary"

@@ -1,0 +1,13 @@
+#share_this.well.well-sm
+  %span.st_sharethis{displaytext: "ShareThis"}
+  %span.st_facebook{displaytext: "Facebook"}
+  %span.st_twitter{displaytext: "Tweet"}
+  %span.st_linkedin{displaytext: "LinkedIn"}
+  %span.st_pinterest{displaytext: "Pinterest"}
+  %span.st_email{displaytext: "Email"}
+
+:javascript
+  var switchTo5x=false;
+%script{src: "http://w.sharethis.com/button/buttons.js", type: "text/javascript"}
+:javascript
+  stLight.options({publisher: "0e049634-d800-4fe2-b2c7-db4ceb1cafa8", doNotHash: false, doNotCopy: false, hashAddressBar: false});

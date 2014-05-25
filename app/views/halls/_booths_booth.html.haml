@@ -1,0 +1,5 @@
+.booth{tooltip(booth.name, :top)}
+  .info-centre
+    = link_to image_tag(booth.template.thumbnail_image.assets.url), booth_path(booth) if booth.template.thumbnail_image
+  .company-logo
+    = link_to(image_tag(booth.company_logo.assets.url), booth_path(booth)) if booth.company_logo

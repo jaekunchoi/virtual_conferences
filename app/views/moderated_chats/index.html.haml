@@ -1,0 +1,30 @@
+.row
+  - box 12, 'Listing moderated_chats' do
+    %table.table.table-striped.table-bordered.table-hover.dataTable
+      %thead
+        %tr
+          %th Actions
+          %th Message
+          %th Webcast
+          %th From user
+          %th To user
+          %th Approved
+
+      %tbody
+        - @moderated_chats.each do |moderated_chat|
+          %tr
+            %td
+              = link_to 'Show', moderated_chat
+              |
+              = link_to 'Edit', edit_moderated_chat_path(moderated_chat)
+              |
+              = link_to 'Destroy', moderated_chat, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => true, class: "delete_chat"
+            %td= moderated_chat.message
+            %td= "#{moderated_chat.webcast.name} (#{moderated_chat.webcast.id})" if moderated_chat.webcast.present?
+            %td= moderated_chat.from_user_id
+            %td= moderated_chat.to_user_id
+            %td= moderated_chat.approved
+
+    %br
+
+    = link_to 'New Moderated chat', new_moderated_chat_path

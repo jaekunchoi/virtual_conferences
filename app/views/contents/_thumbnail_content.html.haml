@@ -1,0 +1,25 @@
+.contentMediaThumbnail
+  -case content.content_type
+    -when Content::CONTENT_TYPE[:youtube_video]
+      -video = content.video
+      -if video
+        = image_tag video.thumbnails.second.url, :width => width, :height => height
+      -else
+        -if content.external_id
+          Video was not set.
+        -else
+          Video could not be loaded.
+    -when Content::CONTENT_TYPE[:slideshare]
+      -if content.external_id
+        =paperclip_image_tag content.thumbnail_image, {noImage:"no_image_available.jpg", style: "width:#{width}px; height: #{height}px;"}
+      -else
+        Presentation was not set.
+    -when Content::CONTENT_TYPE[:resource]
+      -if content.resource_file.assets.present? || content.external_id.present?
+        -if paperclip_present? content.thumbnail_image
+          =paperclip_image_tag content.thumbnail_image, {noImage:"no_image_available.jpg", style: "width:#{width}px; height: #{height}px;"}
+        -else
+          =fa_icon("file-text-o", {class: "contentDownload", style: "width:#{width}px; height: #{height}px;"}) if (content.resource_file && content.resource_file.assets.present?) && !content.external_id.present?
+          =fa_icon("file-text-o", {class: "contentDownload", style: "width:#{width}px; height: #{height}px;"}) if content.external_id.present?
+      -else
+        No resources set.

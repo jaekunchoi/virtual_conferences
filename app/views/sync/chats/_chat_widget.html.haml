@@ -1,0 +1,16 @@
+%li.clearfix.left
+  %span.chat-img.pull-left
+    - from_user_avatar = chat.from_user.uploaded_file.assets.url if chat.from_user.uploaded_file if chat.from_user
+    %img.img-circle{src: from_user_avatar, width: 50}
+  .chat-body.clearfix
+    .header
+      %strong.primary-font 
+        -if defined? view_type and view_type.include?(:booth_rep) 
+          = link_to(chat.from_user.name, user_path(chat.from_user), :target => "_blank") if chat.from_user
+        -else
+          = chat.from_user.name if chat.from_user
+      %small.text-muted.pull-right
+        %span.glyphicon.glyphicon-time
+        = "#{chat.created_at}"
+        = link_to 'Destroy', chat, :method => :delete, :remote => true, :data => { :confirm => 'Are you sure?' }, class: "delete_chat text-danger", :style => "font-size:12px;" if current_user.has_role? :admin
+    %p= chat.message

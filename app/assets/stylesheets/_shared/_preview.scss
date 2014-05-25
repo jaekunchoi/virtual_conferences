@@ -1,0 +1,101 @@
+#previewPane{
+  background: rgba(0, 0, 0, 0.8);
+  padding: 60px;
+  .closeIcon {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    .close {
+      text-shadow: 0 1px 0 #ccc;
+      color: #999;
+      opacity: 1;
+    }
+    .close:hover {
+      color: #ccc;
+    }
+  }
+  .contentArea {
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    
+    .contentItemArea {
+      display: table-cell;
+      vertical-align: top;
+      width: 600px;
+      height: 400px;
+      .fa {
+        padding-top: 20px;
+        padding-bottom: 2;
+        width: 500px;
+        text-align: center;
+        font-size: 350px;
+        color: #fff;
+        background: transparent;
+      }
+    }
+    .textArea {
+      display: table-cell;
+      vertical-align: top;
+      padding-left: 80px;
+      color: white;
+      width: 370px;
+
+      .heading {
+        font-size: large;
+        font-weight: bold;
+      }
+      .subheading {
+        font-size: larger;
+      }
+      .description {
+        padding-top:10px;
+      }
+      .additional {
+        a .fa {
+          color: white;
+          background: #999;
+          font-size: 30px;
+          width: 44px;
+          height: 40px;
+          text-align: center;
+          padding-top: 6px;
+          padding-bottom: 6px;
+          @include border-radius("3px");
+          @include transition("background-color .4s ease-in");
+        }
+        a:hover .fa {
+          background: #0AD;
+        }
+      }
+      .sponsoredBy {
+        position: absolute;
+        bottom: 60px;
+        right: 60px;
+        .sponsoredByText {
+          text-transform: uppercase;
+          border: 1px solid #0cf;
+          background: #0ad;
+          display: inline-block;
+          font-size: xx-small;
+          padding: 2px;
+          margin-bottom: 4px;
+          text-align: center;
+          width: 104px;
+          @include border-radius("3px");
+        }
+        .sponsoredByLogo {
+          img {
+            max-width:104px;
+            max-height:104px;
+            @include transition("border .3s ease-in-out");
+            border: 2px solid transparent;
+          }
+          a:hover img {
+            border: 2px solid #0ad;
+          }
+        }
+      }
+    }
+  }
+}

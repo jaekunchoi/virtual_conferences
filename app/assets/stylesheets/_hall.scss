@@ -1,0 +1,50 @@
+/* Hall
+-------------------------------------------*/
+#hall{
+  @extend .visitor-view-container;
+  #sponsors{
+    width: 750px;
+    margin: 0 auto;
+  }
+  .exhibition_hall_title{
+    width: 720px;
+    margin: 0 auto;
+    font-size: 38px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #F3F3F3;
+    .next, .previous{
+      a{ color: #fff }
+    }
+  }
+  .event-logos{
+    width: 350px;
+  }
+  .top-mid-box{
+    width: 510px;
+    position: absolute;
+    top: 0;
+    left: 380px;
+    h3{ color: #333; }
+    li{
+      background: #fff;
+      padding: 5px;
+      margin: 5px 0;
+    }
+  }
+  .webcasts-box{
+    position: absolute;
+    top: 50px;
+    left: 150px;
+    width: 900px;
+    h3{ color: #333; }
+    li{
+      background: #fff;
+      padding: 5px;
+      margin: 5px 0;
+    }
+    .pagination li{
+      background: transparent;
+    }
+  }
+}

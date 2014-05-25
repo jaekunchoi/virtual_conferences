@@ -1,0 +1,17 @@
+.well.webcasts-box.animated.slideInDown
+  %table.table.table-hover.dataTable3
+    %thead
+      %tr
+        %th Webcast Name
+        %th Description
+    %tbody
+      - hall.webcasts.each do |webcast|
+        %tr
+          %td
+            - if((webcast.start.to_i..webcast.finish.to_i).cover?(Time.now.to_i))
+              %h5= link_to "#{webcast.start} - #{webcast.name}", webcast_path(webcast)
+            - else
+              %h5= "#{webcast.start} - #{webcast.name}"
+          %td
+            %p= webcast.details
+

@@ -1,0 +1,93 @@
+.row
+  .col-md-12
+    #webcast-visitor{ :style => "background:url('#{@webcast.template.uploaded_file.assets.url}') no-repeat;" }
+      .well
+        .row
+          .col-md-4
+            .row
+              .col-md-12
+                .overlay
+                #video{ :style => "height:350px;" }
+                #holding_image_start.holding_image
+                  = image_tag @youtube_video.holding_image_start.assets.url if @youtube_video.holding_image_start if @youtube_video.present?
+                #holding_image_qna.holding_image
+                  = image_tag @youtube_video.holding_image_qna.assets.url if @youtube_video.holding_image_qna if @youtube_video.present?
+                #holding_image_finish.holding_image
+                  = image_tag @youtube_video.holding_image_finish.assets.url if @youtube_video.holding_image_finish if @youtube_video.present?
+            %br
+            .row
+              .col-md-12
+                #image{ :style => "height:400px;position:relative;" }
+          .col-md-8
+            .row
+              .col-md-12
+                .overlay
+                #slideshare-player
+            .row
+              .col-md-12
+                #chat= render partial: 'chat', locals: { webcast: @webcast }
+
+              
+:javascript
+
+  var flashMovie;
+
+  //Load the flash player. Properties for the player can be changed here.
+  function loadPlayer(slideshare_id) {
+    //allowScriptAccess from other domains
+    var params = { allowScriptAccess: "always" };
+    var atts = { id: "slideshare-player" };
+
+    //doc: The path of the file to be used
+    //startSlide: The number of the slide to start from
+    //rel: Whether to show a screen with related slideshows at the end or not. 0 means false and 1 is true..
+    var flashvars = { doc : slideshare_id, startSlide : 1, rel : 0 };
+
+    swfobject.switchOffAutoHideShow();
+    //Generate the embed SWF file
+    swfobject.embedSWF("http://static.slidesharecdn.com/swf/ssplayer2.swf", "slideshare-player", "765", "450", "8", null, flashvars, params, atts);
+
+    //Get a reference to the player
+    flashMovie = document.getElementById("slideshare-player");
+  }
+
+  //Jump to the appropriate slide
+  function jumpTo(){
+    flashMovie.jumpTo(parseInt(document.getElementById("slidenumber").value));
+  }
+
+  //Update the slide number in the field for the same
+  function updateSlideNumber(){
+    document.getElementById("slidenumber").value = flashMovie.getCurrentSlide();
+  }
+
+
+  $(function(){
+    #{"
+      $('#holding_image_start').fadeIn();
+      var start_holding_image = function(){
+        $('#holding_image_start').hide().appendTo('#image').fadeIn();
+      }
+
+      var load_video = function(){
+        video = Popcorn.youtube('#video', 'http://www.youtube.com/watch?v=#{@youtube_video.yt_youtube_id}' + '&rel=0&controls=1&showinfo=0&autoplay=1&start=#{@youtube_start_seconds}' );
+        var video_ready = function(){
+          if(video.readyState() == 4){
+            video.volume(1);
+            // start_holding_image();
+            $('#holding_image_start').fadeOut();
+            setTimeout( function(){ $('#holding_image_qna').fadeIn(); }, #{(@youtube_video.video_duration - 305) * 1000} );
+            setTimeout( function(){ $('#holding_image_qna').fadeOut(); }, #{(@youtube_video.video_duration - 300) * 1000} );
+            setTimeout( function(){ $('#holding_image_finish').fadeIn(); }, #{@youtube_video.video_duration * 1000} );
+            #{raw @video_code}
+          } else {
+            setTimeout( video_ready, 10 );
+          }
+        }
+        video_ready();
+      }
+      setTimeout( load_video , 5000);
+    " if @youtube_video.present?}
+
+    #{"loadPlayer('#{@slideshare.doc}');" if @slideshare.present?}
+  });

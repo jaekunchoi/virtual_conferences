@@ -1,0 +1,33 @@
+.row
+	- box 12, "List of booths available" do
+		%table.table.table-striped.table-bordered.table-hover.dataTable
+			%thead
+				%tr
+					%th Actions
+					%th Name
+					%th Company Website
+					%th Email
+					%th Booth owner
+			%tbody
+				- @booths.each do |booth|
+					%tr
+						%td
+							= link_to 'Visit', booth_path(booth)
+							|
+							= link_to 'Edit', edit_booth_path(booth)
+							|
+							= link_to 'Destroy', booth_path(booth), :method => :delete, :data => { :confirm => 'Are you sure?' }
+						%td= booth.name
+						%td= booth.company_website
+						%td= booth.email
+						%td= booth.user.name if booth.user
+
+		= link_to 'New booth', new_path, :class => "btn btn-primary"
+
+:javascript
+	$(function(){
+		$('[data-remote=true]').on("ajax:success", function(data, status, xhr){
+	        console.log(data);
+	        console.log(status);
+	    });
+	});

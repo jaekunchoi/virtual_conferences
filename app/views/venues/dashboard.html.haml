@@ -1,0 +1,5 @@
+.row
+  = render partial: "venues", locals: { venues: @venues } if current_user.has_role?(:admin) || current_user.has_role?(:vendor)
+  = render partial: "events", locals: { events: @events } if(current_user.has_role?(:visitor) && @events)
+  = render partial: "webcasts", locals: { webcasts: @webcasts } if(current_user.has_role?(:host) && @webcasts)
+  = render partial: "calendar" unless browser.ie8?

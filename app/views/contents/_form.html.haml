@@ -1,0 +1,52 @@
+= simple_form_for(@content, :html => { :class => "form-horizontal", :id => "inline-validate" }, :wrapper => "horizontal", defaults: { :input_html => { class: "form-control"}, label_html: { class: "col-lg-4" } } ) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :name
+    = f.input :short_desc
+    = f.input :content_type, collection: Content::CONTENT_TYPE.values, :input_html => {onchange: "onUpdateContentType(this.value);"}
+
+    .contentOptions{content_type: Content::CONTENT_TYPE[:youtube_video], style: ("display:none")}
+      =f.input :external_id, label: "Youtube Id"
+    .contentOptions{content_type: Content::CONTENT_TYPE[:slideshare], style: ("display:none")}
+      =f.input :external_id, label: "Slideshare Id"
+      =simple_form_image_paperclip(f, :thumbnail_image)
+    .contentOptions{content_type: Content::CONTENT_TYPE[:resource], style: ("display:none")}
+      =f.input :external_id, label: "Resource URL"
+      =simple_form_image_paperclip(f, :thumbnail_image)
+      .form-group
+        = f.label :resource_file, :class => 'col-lg-4 control-label'
+        .col-lg-8
+          = f.file_field :resource_file
+    .selectedContent
+
+    = f.input :description, input_html: {style: "height: 150px"}
+    = f.association :tags, collection: available_tags, :input_html => { class: "chosen" } if view_type.include?(:admin)
+    %br
+    %br
+    
+    = f.association :owner_user, collection: available_users, :input_html => { class: "chosen" }, label_method: :name_and_email
+    = f.association :booths, label: "Appear on booths", collection: available_booths, :input_html => { class: "chosen" }
+
+    = f.association :halls, label: "Appear in halls", collection: available_halls, :input_html => { class: "chosen" } if view_type.include?(:admin)
+    %br
+    %br
+
+    = f.association :sponsor_booth, collection: available_booths, :input_html => { class: "chosen" }, label: "Content sponsor" if view_type.include?(:admin)
+    = f.input :featured, label: "Featured content"  if view_type.include?(:admin)
+    = f.association :venue, label: "Venue", input_html: {class: "chosen", disabled: (!view_type.include?(:admin))}
+    = f.hidden_field :venue_id unless view_type.include?(:admin) 
+    
+  .form-actions
+    = f.button :submit, :class => "btn btn-primary"
+  .blankArea{style:"height: 200px"}
+    &nbsp;
+:javascript
+  if ("#{@content.content_type}" != "") {
+    onUpdateContentType("#{@content.content_type}");
+  }
+  
+  function onUpdateContentType(contentType) {
+    //$(".contentOptions").css("display","none");
+    //$(".contentOptions[content_type='"+contentType+"']").css("display","block");
+    $(".selectedContent").html($(".contentOptions[content_type='"+contentType+"']").html());
+  }

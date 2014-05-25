@@ -1,0 +1,29 @@
+#previewPane
+  .closeIcon
+    %button.close{ :type => 'button', 'data-dismiss' => 'modal', 'aria-hidden' => 'true' }
+      &times;
+  .contentArea
+    .contentItemArea
+      =yield :preview_contentItem
+    .textArea
+      .heading
+        =content.name
+      .subheading
+        =content.short_desc
+      .description
+        =content.description
+      .additional
+        =yield :preview_additionalInfo
+      -if defined? content.sponsor_booth and content.sponsor_booth and content.sponsor_booth.thumbnail_image
+        .sponsoredBy
+          .sponsoredByText
+            Sponsored By
+          .sponsoredByLogo
+            =link_to image_tag(content.sponsor_booth.thumbnail_image.assets.url, 
+              tooltip("Visit Sponsor", :bottom)), 
+              booth_path(content.sponsor_booth), target: '_blank'
+              
+
+:javascript
+  $("#previewPane").parent().css("background-color","transparent")
+  $('.withTooltip').tooltip();

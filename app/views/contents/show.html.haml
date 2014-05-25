@@ -1,0 +1,57 @@
+.row
+  - box 7, "View Content", {'Edit' => edit_content_path(@content), 'Back' => index_path} do
+    -if !@content.valid_content?
+      .label.ui-button-danger{style: 'white-space: normal; display: inline-block;'}
+        Content is not valid, please resolve this. While invalid this content will not be shown in booths or the knowledge center.
+      %br
+      %br
+    %p
+      %b Name
+      =@content.name
+    %p 
+      %b Short Description
+      =@content.short_desc
+    %p
+      %b Description
+      =@content.description
+    %p
+      %b Tags
+      -@content.tags.each do |tag|
+        %span.labelObjectTag
+          =tag.name
+    
+    %br
+    %p
+      %b Owner
+      -if @content.owner_user
+        %span.labelObjectTag
+          =@content.owner_user.name_and_email
+    %p
+      %b Appear on booths
+      -@content.booths.each do |booth|
+        %span.labelObjectTag{tooltip(booth.location_name, :top)}
+          =booth.name
+    
+    %p
+      %b Appear in halls
+      -@content.halls.each do |hall|
+        %span.labelObjectTag{tooltip(hall.location_name, :top)}
+          =hall.name
+    
+    %br
+    %p
+      %b Content sponsor
+      -if @content.sponsor_booth
+        %span.labelObjectTag{tooltip(@content.sponsor_booth.location_name, :top)}
+          =@content.sponsor_booth.name 
+    %p
+      %b Featured content
+      =boolean_YN(@content.featured)
+      
+  - box 4, "Content" do
+    %p 
+      %b=@content.content_type
+    =paperclip_image_tag @content.thumbnail_image, {noImage:"no_image_available.jpg", style: "max-width:#{300}px; max-height: #{250}px;"} if @content.content_type != Content::CONTENT_TYPE[:youtube_video]
+    %br
+    %br
+    =render partial: "display_content.html.haml", locals: {content: @content, width: 300, height: 250} 

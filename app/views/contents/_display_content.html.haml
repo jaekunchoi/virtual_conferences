@@ -1,0 +1,24 @@
+.contentMediaDisplay
+  -case content.content_type
+    -when Content::CONTENT_TYPE[:youtube_video]
+      -video = content.video
+      -if video
+         
+        %iframe{src:"https://www.youtube.com/embed/#{content.external_id}?#{'autoplay=1&' if (defined? autoplay) && autoplay == true }rel=0&#{'controls=0&showinfo=0&' if (defined? quiet) && quiet == true }", :style => "width:#{width}px; height: #{height}px; border:0px;"}
+      -else
+        -if !content.external_id.present?
+          Video was not set.
+        -else
+          Video could not be loaded.
+    -when Content::CONTENT_TYPE[:slideshare]
+      -if content.external_id
+        %iframe{ :src => "http://www.slideshare.net/slideshow/embed_code/#{content.external_id}?rel=0", :style => "width:#{width}px; height: #{height}px; border:0px;" }
+      -else
+        Presentation was not set.
+    -when Content::CONTENT_TYPE[:resource]
+      =link_to fa_icon("file-text-o"), content.resource_file.assets.url,
+        {class: "contentDownloadButton"}.merge(tooltip("Download File", :bottom, target: "_blank")) if content.resource_file && content.resource_file.assets.present? && !content.external_id.present?
+      =link_to fa_icon("file-text-o"), content.external_id,
+        {class: "contentDownloadButton"}.merge(tooltip("Download File", :bottom, target: "_blank")) if content.external_id.present?
+      -if !(content.resource_file && content.resource_file.assets.present?) && !content.external_id.present?
+        No resources set.

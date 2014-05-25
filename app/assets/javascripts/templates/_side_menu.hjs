@@ -1,0 +1,76 @@
+<div id="left">
+  <div class="media user-media">
+    <a class="user-link" href="/users/edit">
+    <img alt="User Picture" class="media-object img-thumbnail user-img" src="http://lgjobs.com.au/templates/OfficeView/main/images/tom.jpg" style="width:75px;height:75px">
+    <span class="label label-danger user-label">
+    16
+    </span>
+    </a>
+    <div class="media-body">
+      <h5 class="media-heading">
+      Tom
+      </h5>
+      <ul class="list-unstyled user-info">
+        <li><a href="/users/edit">Administrator</a></li>
+        <li>
+          Last Access :
+          <br>
+          <small>
+          <i class="fa fa-calendar"></i> 16 Mar 16:32
+          </small>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <ul class="collapse" id="menu">
+    <li class="nav-header">
+      Menu
+    </li>
+    <li class="nav-divider"></li>
+    <li class="panel active">
+      <a class="accordion-toggle" data-parent="#menu" data-target="#dashboard-nav" data-toggle="collapse" href="#">
+        <i class="fa fa-user"></i> Users
+        <span class="pull-right">
+          <i class="fa fa-angle-left"></i>
+        </span>
+      </a>
+      <ul class="collapse in" id="dashboard-nav">
+        {{#linkTo 'users' tagName='li' href=false}}
+          {{#linkTo 'users'}}<i class="fa fa-angle-right"></i> Users{{/linkTo}}
+        {{/linkTo}}
+      </ul>
+    </li>
+    <li class="panel">
+      <a class="accordion-toggle" data-parent="#menu" data-target="#component-nav" data-toggle="collapse" href="#">
+        <i class="fa fa-globe"></i> Venues
+        <span class="pull-right">
+        <i class="fa fa-angle-left"></i>
+        </span>
+      </a>
+
+      <ul class="collapse" id="component-nav">
+        {{#linkTo 'venues' tagName='li' href=false}}
+          {{#linkTo 'venues'}}<i class="fa fa-angle-right"></i> Dashboard{{/linkTo}}
+        {{/linkTo}}
+        {{#linkTo 'venues' tagName='li' href=false}}
+          {{#linkTo 'venues'}}<i class="fa fa-angle-right"></i> General Settings{{/linkTo}}
+        {{/linkTo}}
+        {{#linkTo 'venues' tagName='li' href=false}}
+          {{#linkTo 'venues'}}<i class="fa fa-angle-right"></i> Venue Structure{{/linkTo}}
+        {{/linkTo}}
+        {{#linkTo 'venues' tagName='li' href=false}}
+          {{#linkTo 'venues'}}<i class="fa fa-angle-right"></i> Networking & Communication{{/linkTo}}
+        {{/linkTo}}
+        {{#linkTo 'venues' tagName='li' href=false}}
+          {{#linkTo 'venues'}}<i class="fa fa-angle-right"></i> Announcement Board{{/linkTo}}
+        {{/linkTo}}
+        {{#linkTo 'venues' tagName='li' href=false}}
+          {{#linkTo 'venues'}}<i class="fa fa-angle-right"></i> Access Control{{/linkTo}}
+        {{/linkTo}}
+        {{#linkTo 'venues' tagName='li' href=false}}
+          {{#linkTo 'venues'}}<i class="fa fa-angle-right"></i> Privacy Statement{{/linkTo}}
+        {{/linkTo}}
+      </ul>
+    </li>
+  </ul>
+</div>

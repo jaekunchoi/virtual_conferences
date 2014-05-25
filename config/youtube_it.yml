@@ -1,0 +1,13 @@
+common: &common
+  dev_key: AIzaSyDFzt6Ak0rNQ4GQbrbWeyi0edRP1MQ34yQ
+  username:  dotconferences.ebony
+  password:  conferences141
+
+test:
+  <<: *common
+development:
+  <<: *common
+production:
+  <<: *common
+staging:
+  <<: *common

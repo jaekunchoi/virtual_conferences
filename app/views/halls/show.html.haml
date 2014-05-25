@@ -1,0 +1,83 @@
+.row
+  - box 6, "Show hall", { 'Edit' => edit_hall_path(@hall), 'Back' => venue_halls_path(@venue), 'Visit' => venue_venue_hall_visit_path(@hall.venue, @hall) } do
+
+    %p
+      %b Name:
+      = @hall.name
+    %p
+      %b Template:
+      = @hall.template_id
+    %p
+      %b Background:
+      = @hall.background_id
+    %p
+      %b Colour:
+      = @hall.colour
+    %p
+      %b Greeting:
+      = @hall.greeting
+    %p
+      %b Greeting type:
+      = @hall.greeting_type
+    %p
+      %b Greeting enable:
+      = @hall.greeting_enable
+    %p{style: "vertical-align: text-top"}
+      %b Welcome video:
+      -welcomeVideo = @hall.welcome_video_content
+      -if welcomeVideo
+        %br
+        %b
+          =render partial: "contents/display_content", locals: {content: welcomeVideo, width: 200, height: 175}
+      -else
+        None
+    %p
+      %b Jumbotron:
+      = @hall.jumbotron
+    %p
+      %b Jumbotron enable:
+      = @hall.jumbotron_enable
+
+    %p
+      %b Venue:
+      = @hall.venue.name if @hall.venue
+
+    %p
+      %b Event Logo:
+      = image_tag @hall.event_logo.assets.url if @hall.event_logo
+
+  - box 6, "Hall settings", { 'Create Booth' => new_hall_booth_path(@hall) }, "inverse" do
+    %ul.nav.nav-tabs
+      %li.active
+        %a{ :href => "#hall-display", "data-toggle" => :tab } Hall Display
+      - if @hall.webcasts.present?
+        %li
+          %a{ :href => "#webcasts", "data-toggle" => :tab } Webcasts
+      %li
+        %a{ :href => "#categories", "data-toggle" => :tab } Categories
+
+    .tab-content
+      .tab-pane.fade.in.active#hall-display
+        %br
+        = image_tag @hall.template.uploaded_file.assets.url, width: '100%', class: 'booth_background' if @hall.template and @hall.template.uploaded_file
+      - if @hall.webcasts.present?
+        .tab-pane.fade#webcasts
+          %br
+          - @hall.webcasts.each do |webcast|
+            .panel{ :class => "panel-default" }
+              .panel-heading
+                = link_to webcast.name, edit_webcast_path(webcast)
+                %small
+                  %strong= "(Id: #{webcast.id})"
+                
+              .panel-body
+                %ul
+                  %li 
+                    Live from: 
+                    %strong= webcast.start
+                  %li
+                    Creation date:
+                    %strong= webcast.created_at
+
+      .tab-pane.fade#categories
+        Categories

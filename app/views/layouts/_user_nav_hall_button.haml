@@ -1,0 +1,17 @@
+-if halls.size > 1
+  %li.dropdown.navbarButton{class:("active" if @hall.hall_type == halls[0].hall_type)}
+    %a{:href => "javascript;;", :class => "dropdown-toggle", "data-toggle" => "dropdown"} 
+      .navbarButtonText
+        =halls[0].hall_type unless defined? dropdown_title
+        =dropdown_title if defined? dropdown_title
+        %b.caret
+      %ul.dropdown-menu
+        -halls.each do |hall|
+          %li
+            = link_to hall.name, venue_venue_hall_visit_path(hall.venue, hall)
+-elsif halls.size == 1
+  -hall = halls[0]
+  %li.navbarButton{class:("active" if @hall == hall)}
+    %a.navbarLink{href: venue_venue_hall_visit_path(hall.venue, hall)}
+      .navbarButtonText
+        =hall.name

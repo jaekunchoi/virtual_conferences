@@ -1,0 +1,21 @@
+
+.row
+  .col-md-12
+    #hall{ :style => "background:url('#{@hall.template.uploaded_file.assets.url if @hall.template.uploaded_file}') no-repeat;" }
+      =render partial: "halls/hall_types/"+@hall.hall_type.gsub(/ /,"_").downcase+"_hall", locals: { :hall => @hall }
+      
+= render partial: '_shared/control/modal_popup', locals: {use_ie_urls: false}
+
+= render partial: 'footer', locals: { :hall => @hall }
+
+:javascript
+    function playMainHallVideo() {
+      $.cookie('main_hall_video#{@hall.id}', 'played', { expires: 7 });
+      openModalUrl("#{view_content_path(@hall.welcome_video_content, width: 500, height: 306) if @hall.welcome_video_content}", "", [500,306]);
+    }
+
+  $(function(){
+    if($.cookie('main_hall_video#{@hall.id}') != 'played' && #{@hall.welcome_video_content.present?}){
+      playMainHallVideo();
+    }
+  });

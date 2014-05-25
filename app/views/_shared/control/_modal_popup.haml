@@ -1,0 +1,83 @@
+-background = defined? background ? background : "#fff"
+
+.modal.fade.container#information-modal{:tabindex => "-1", :role => "dialog", "data-replace" => true}
+  .modal-dialog
+    .modal-content
+
+#ie8-modal{:style => "padding:10px;"}
+
+
+:javascript
+  function refreshModal() {
+    $modal = $('#information-modal');
+    $modal.modal('layout');
+  }
+  
+  function openModalUrl(url, title, size, top) {
+      var options;
+      width = 1100;
+      height = null
+      if (size != null && size.length == 2 && size[0] != null) {
+        width = size[0];
+        height = size[1];
+      }
+      if (top == null) {
+        top = 150;
+      }
+      
+      $modal = $('#information-modal');
+      
+      if (height != null) {
+        $modal.height(height);
+        $modal.attr("height",height+"px")
+      }
+        #{"
+          var href = url + '#{defined? use_ie_urls and use_ie_urls ? "_ie" : ""}';
+          var $dialog = $('#ie8-modal')
+                         .dialog({
+                             autoOpen: false,
+                             modal: true,
+                             width: width,
+                             title: title,
+                             open: function(ev, ui){
+                              $.get(href, function(data){
+                                $('#ie8-modal').html(data);
+                                $('#accordion').accordion();
+                              });
+                             }
+                         });
+          $dialog.dialog('open');
+
+        " if browser.ie8? }
+
+        #{"
+          $('body').modalmanager('loading');
+          $modal.load(url, '', function(){
+            $modal.modal({width: width, height: height});
+          });
+          $modal.on('hidden.bs.modal', function (e) {
+            $('#information-modal .contentMediaDisplay').html('blank');
+          });
+          return false;
+        " unless browser.ie8? }
+        
+  }
+  $(function(){
+
+    // ----- Modal Dialog processing ----- 
+      $('.modal_popup').click(function(event){
+        event.preventDefault();
+        openModalUrl($(this).attr('href'), $(this).children('a').attr('title'),[$(this).attr('modalwidth'),$(this).attr('modalheight')]);
+      });
+
+    // Override default spinner for modal manager
+    $.fn.modal.defaults.spinner = $.fn.modalmanager.defaults.spinner = 
+    '<div class="loading-spinner" style="width: 200px; margin-left: -100px;">' +
+        '<div class="progress progress-striped active">' +
+            '<div class="progress-bar" style="width: 100%;"></div>' +
+        '</div>' +
+    '</div>';
+
+  });
+  // ----- END Modal Dialog processing ----- 
+  

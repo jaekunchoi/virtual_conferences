@@ -1,0 +1,6 @@
+- if !flash.empty?
+	.container
+		- flash.each do |name, msg|
+			- if msg.is_a?(String)
+				:javascript
+					$.bootstrapGrowl('#{msg}', { type: '#{name == :notice ? "success" : "danger"}', align: 'center', width: 'auto' });

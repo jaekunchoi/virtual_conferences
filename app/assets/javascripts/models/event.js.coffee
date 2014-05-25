@@ -1,0 +1,21 @@
+# for more details see: http://emberjs.com/guides/models/defining-models/
+
+VirtualExhibition.Event = DS.Model.extend
+  name: DS.attr 'string'
+  status: DS.attr 'string'
+  start: DS.attr 'date'
+  finish: DS.attr 'date'
+  eventUrl: DS.attr 'string'
+  eventReportsUrl: DS.attr 'string'
+  landingLocation: DS.attr 'number'
+  logo1: DS.attr 'string'
+  logo2: DS.attr 'string'
+  topBarBackground: DS.attr 'string'
+  colour: DS.attr 'string'
+  publishEvent: DS.attr 'boolean'
+  eventImage: DS.attr 'string'
+  description: DS.attr 'string'
+  searchKeywords: DS.attr 'string'
+  closedEventRedirect: DS.attr 'string'
+  comments: DS.attr 'string'
+  venue: DS.belongsTo 'venue'

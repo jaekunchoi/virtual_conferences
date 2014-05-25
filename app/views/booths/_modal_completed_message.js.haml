@@ -1,0 +1,4 @@
+$('#send-message #message').val('');
+$('body').modalmanager('loading');
+$.bootstrapGrowl("#{message}", {align: 'center', width: 'auto' });
+$('#information-modal').modal('hide');

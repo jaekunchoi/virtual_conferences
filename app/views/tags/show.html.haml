@@ -1,0 +1,20 @@
+.row
+  - box 7, "View Tag", {'Edit' => edit_tag_path(@tag), 'Back' => venue_tags_path(@venue)} do
+    %p
+      %b Name
+      =@tag.name
+    %p
+      %b Thumbnail
+      =paperclip_image_tag @tag.thumbnail_image, {noImage:"no_image_available.jpg", style: "max-width:#{300}px; max-height: #{250}px;"}
+    %p
+      %b Featured content
+      =boolean_YN(@tag.featured)
+    %p
+      %b Booths
+      -@tag.booths.each do |booth|
+        %span.labelObjectTag=booth.name
+    %p
+      %b Content
+      -@tag.contents.each do |content|
+        %span.labelObjectTag=content.name
+      

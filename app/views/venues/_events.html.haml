@@ -1,0 +1,17 @@
+- box 6, "Select from list of available events" do
+  %table.table.table-striped.table-bordered.dataTable
+    %thead
+      %tr
+        %th Event name
+        %th Details
+        %th Start
+        %th Finish
+        %th Participants
+    %tbody
+      - @events.each do |event|
+        %tr
+          %td= link_to event.name, event_path(event)
+          %td= raw event.description
+          %td= event.start
+          %td= event.finish
+          %td= event.users.size

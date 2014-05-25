@@ -1,0 +1,30 @@
+= render partial: "exhibition_hall_title", locals: { :hall => hall }
+
+#booths
+  -allBooths = hall.booths.order(:name)
+
+  -if allBooths.size <= 5
+    -booths = allBooths[0, 2]
+  -if allBooths.size <= 6
+    -booths = allBooths[0, 3]
+  -elsif allBooths.size <= 8
+    -booths = allBooths[0, 4]
+  -else
+    -booths = allBooths[0, 5]
+  .row1{class: (allBooths.size <= 4 ? "oneRow " : "" )+(booths and booths.size == 2 ? "condensedRow " : "")}
+    -if !booths.nil?
+      -booths.each do |booth|
+        = render partial: "booths_booth", locals: { :booth => booth }
+
+  -if allBooths.size > 2 && allBooths.size <= 5
+    -booths = allBooths[2,3]
+  -if allBooths.size <= 6
+    -booths = allBooths[3,3]
+  -elsif allBooths.size <= 8
+    -booths = allBooths[4,4]
+  -elsif allBooths.size <= 10
+    -booths = allBooths[5,5]
+  .row2{class: ("condensedRow" if booths and booths.size == 2)}
+    -if !booths.nil?
+      -booths.each do |booth|
+        = render partial: "booths_booth", locals: { :booth => booth }

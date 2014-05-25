@@ -1,0 +1,6 @@
+-content_for :preview_contentItem do
+  =render partial: "display_content", locals: {content: @content, width: 650, height: 400}
+-content_for :preview_additionalInfo do
+  %br
+  =render partial: "display_content", locals: {content: @content, width: 650, height: 400} if @content.content_type == Content::CONTENT_TYPE[:resource]
+=render partial: '_shared/control/preview', locals: {content: @content}

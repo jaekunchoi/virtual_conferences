@@ -1,0 +1,34 @@
+.row
+  - box 12, "List webcasts" do
+    %table.table.table-striped.table-bordered.table-hover.dataTable
+      %thead
+        %tr
+          %th Actions
+          %th Name
+          %th Hall
+          %th Webcast type
+          %th Media type
+          %th User
+          %th Details
+          %th Template
+          %th Background colour
+      %tbody
+        - @webcasts.each do |webcast|
+          %tr
+            %td
+              = link_to 'Show', webcast
+              |
+              = link_to 'Edit', edit_webcast_path(webcast)
+              |
+              = link_to 'Destroy', webcast, :method => :delete, :data => { :confirm => 'Are you sure?' }
+            %td= webcast.name
+            %td= webcast.hall.name if webcast.hall
+            %td= webcast.webcast_type
+            %td= webcast.media_type
+            %td= webcast.user.email
+            %td= webcast.details
+            %td
+              = webcast.template.name if webcast.template
+            %td= webcast.background_colour
+
+    = link_to 'New Webcast', new_hall_webcast_path, class: "btn btn-primary"

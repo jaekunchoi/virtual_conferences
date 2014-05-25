@@ -1,0 +1,266 @@
+@import 'mixins_css3';
+
+.content {
+	 background-color: #eee;
+	 padding: 20px;
+	 margin: 0 -20px;
+	 @include border-radius("0 0 6px 6px");
+	 -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+	 -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+	 box-shadow: 0 1px 2px rgba(0,0,0,.15);
+}
+
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+
+body {
+  padding-bottom: 40px;
+  color: #5a5a5a !important;
+  position: relative;
+  backface-visibility: visible !important;
+}
+
+header.head{
+  margin-top: 55px;
+}
+.inner{
+  padding: 0px;
+}
+
+.form-actions{
+  text-align: right;
+}
+
+//### contentDownloadButton - used across multiple pages for the resource icon
+contentDownload .fa {
+  color: white;
+  background: #999;
+  font-size: 30px;
+  width: 44px;
+  height: 40px;
+  text-align: center;
+}
+
+a.contentDownloadButton .fa {
+  color: white;
+  background: #999;
+  font-size: 30px;
+  width: 44px;
+  height: 40px;
+  text-align: center;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  @include border-radius("3px");
+  @include transition("background-color .4s ease-in");
+}
+a.contentDownloadButton:hover .fa {
+  background: #0AD;
+}
+
+//### labelObjectTag - Used in show screens to highlight an object link
+.labelObjectTag {
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 75%;
+  font-weight: bold;
+  line-height: 1;
+  color: white;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+  background-color: #5bc0de;
+  margin-right: 5px;
+}
+
+
+#left small{
+  font-size: 80%;
+}
+
+.datetime {
+  width: 120px !important;
+  display: inline !important;
+}
+.box{
+  img {
+    max-width: 70%;
+  }
+  .body p b{
+    min-width: 240px;
+    display: inline-block;
+  }
+}
+
+.colorgraph {
+  height: 5px;
+  border-top: 0;
+  background: #c4e17f;
+  border-radius: 5px;
+  background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+  background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+  background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+  background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+}
+
+.fuzzy-background{ background-color: rgba(114, 114, 114, 0.5); }
+
+.modal-overflow-scroll{ max-height: 500px; overflow-y: scroll; }
+
+.m-bottom10{ margin-bottom: 10px !important; }
+
+
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Pad the edges of the mobile views a bit */
+.marketing {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.marketing h2 {
+  font-weight: normal;
+}
+.marketing .col-lg-4 p {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#social-logins li {
+  margin: 20px 0;
+}
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+  margin: 80px 0; /* Space out the Bootstrap <hr> more */
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 768px) {
+
+  /* Remove the edge padding needed for mobile */
+  .marketing {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* Navbar positioning foo */
+  .navbar-wrapper {
+    margin-top: 20px;
+  }
+  /* The navbar becomes detached from the top, so we round the corners */
+  .navbar-wrapper .navbar {
+    border-radius: 4px;
+  }
+
+  /* Bump up size of carousel content */
+  .carousel-caption p {
+    margin-bottom: 20px;
+    font-size: 21px;
+    line-height: 1.4;
+  }
+
+  .featurette-heading {
+    font-size: 50px;
+  }
+
+}
+
+@media (min-width: 992px) {
+  .featurette-heading {
+    margin-top: 0px;
+  }
+}
+
+
+.visitor-view-container{
+  position: relative;
+  height: 800px;
+  width: 1200px;
+  margin: 0 auto;
+}
+
+
+  /* Header
+  ------------------------------------------------------------------------*/
+
+  @media (min-width:768px){
+      .fc-header-left, .fc-header-center, .fc-header-right {
+          display: table-cell;
+      }
+      .fc-header-left {
+          width: 25%;
+          text-align: left;
+      }
+
+      .fc-header-center {
+          text-align: center;
+      }
+
+      .fc-header-right {
+          width: 25%;
+          text-align: right;
+      }
+  }
+
+
+/* Visitors
+  ------------------------------------------------------------------------*/
+
+.visitor-wrap-margin{
+  margin-top: 53px !important;
+}
+
+/* Registrations
+  ------------------------------------------------------------------------*/
+
+.registrations-container{
+  width: 930px;
+  margin: 0 auto;
+}
+
+.event-details{
+  p, li{
+    color: #333;
+  }
+}
+
+
+
+
+@import 'navsidebar';
+@import 'carousel';
+@import 'home_page';
+@import 'booths/booth_hall';
+@import 'hall';
+@import 'halls/knowledge_library';
+@import 'halls/main_hall';
+@import 'halls/booth_hall';
+@import 'halls/booth_list_hall';
+@import '_shared/preview';
+@import 'chat';
+@import 'fullcalendar';
+@import 'webcasts';
+@import 'signin';
+@import 'datatables';
+@import 'bootstrap';

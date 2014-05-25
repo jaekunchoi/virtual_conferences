@@ -1,0 +1,79 @@
+.row
+  - box 6, "User details", {'Edit' => edit_user_path(@user), 'Back' => users_path} do
+    -if @view_type.include?(:admin)
+      %p
+        %b Id:
+        = @user.id
+    -if @view_type.include?(:self)
+      %p
+        %b Sign in count:
+        = @user.sign_in_count
+      %p
+        %b Current sign in at:
+        = @user.current_sign_in_at
+      %p
+        %b Last sign in at:
+        = @user.last_sign_in_at
+      %p
+        %b Current sign in IP:
+        = @user.current_sign_in_ip
+      %p
+        %b Last sign in IP:
+        = @user.last_sign_in_ip
+    -if @view_type.include?(:admin)
+      %p
+        %b Confirmed at:
+        = @user.confirmed_at
+      %p
+        %b Confirmation sent at:
+        = @user.confirmation_sent_at
+    -if @view_type.include?(:other)
+      %p
+        %b Title:
+        = @user.title
+      %p
+        %b First name:
+        = @user.first_name
+      %p
+        %b Last name:
+        = @user.last_name
+    -if @view_type.include?(:booth_rep)
+      %p
+        %b Position:
+        = @user.position
+      %p
+        %b Work phone:
+        = @user.work_phone
+      %p
+        %b Email:
+        = @user.email
+      %p
+        %b Company:
+        = @user.company
+    -if @user.events.exists?
+      %p
+        %b Events:
+        - @user.events.each do |event| 
+          %span.labelObjectTag
+            = event.name.to_s
+    -if @user.booths.exists?
+      %p
+        %b Booths:
+        - @user.booths.each do |booth| 
+          %span.labelObjectTag
+            = booth.name.to_s
+    -if @view_type.include?(:other)
+      %p
+        %b Industry:
+        = @user.industry
+      %p
+        %b Topics:
+        = @user.interested_topic
+    -if @view_type.include?(:self)
+      %p
+        %b Created at:
+        = @user.created_at
+    -if @view_type.include?(:other)
+      %p
+        %b Avatar:
+        = image_tag @avatar

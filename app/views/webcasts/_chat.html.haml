@@ -1,0 +1,19 @@
+#chat_widget{:title => "Webcast chat", :style => "width:auto !important;"}
+  .panel.panel-warning
+    .panel-heading
+      %span Webinar Chat
+    .panel-body{ :style => "height:220px;" }
+      %ul.chat
+        = sync partial: 'chat_widget', collection: webcast.chats
+        = sync_new partial: 'chat_widget', resource: Chat.new, direction: :append
+    .panel-footer
+      = simple_form_for(webcast, url: webcast_chats_path(webcast), method: :post, remote: true) do |f|
+        .input-group
+          %textarea.form-control.input-sm#chat-message{name: "chat[message]", placeholder: "Type your message here...", :style => "height:30px;"}
+          %input{type: "hidden", name: "chat[from_user_id]", value: "#{current_user.id}"}
+          %input{type: "hidden", name: "chat[chattable_id]", value: "#{webcast.id}"}
+          %input{type: "hidden", name: "chat[chattable_type]", value: "Webcast"}
+          %span.input-group-btn
+            %button#btn-chat.btn.btn-warning.btn-sm{:type => 'submit'}
+              Send
+        = f.error_notification

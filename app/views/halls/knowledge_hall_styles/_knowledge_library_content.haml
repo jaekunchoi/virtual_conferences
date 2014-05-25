@@ -1,0 +1,14 @@
+- if @linked_content.present?
+  - @linked_content.each do |content|
+    %a.knowledgevideo.contentItem.modal_popup{href: preview_content_path(content.id)}
+      .titleArea
+        .heading
+          =content.name
+        .subheading
+          =content.short_desc
+      .contentThumbnail
+        =render partial: "contents/thumbnail_content", locals: {content: content, width: 300, height: 200}
+-if params[:previewContent]
+  :javascript
+    openModalUrl("#{preview_content_path(params[:previewContent])}", "");
+

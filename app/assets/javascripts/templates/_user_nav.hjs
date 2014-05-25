@@ -1,0 +1,88 @@
+<div id="top">
+	<nav class="navbar navbar-inverse navbar-static-top">
+		<header class="navbar-header">
+			<button class="navbar-toggle" data-toggle="collapse" data-target="navbar-ex1-collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/"><img alt="Logo" src="/images/logo.png" width="160px"></a>
+		</header><!-- /header -->
+		<div class="topnav">
+			<div class="btn-toolbar">
+				<div class="btn-group">
+					<a class="btn btn-success btn-sm" data-original-title="Show / Hide Sidebar" data-placement="bottom" data-toggle="tooltip" id="changeSidebarPos">
+					<i class="fa fa-resize-horizontal"></i>
+					</a>
+				</div>
+				<div class="btn-group">
+					<a class="btn btn-default btn-sm" data-original-title="E-mail" data-placement="bottom" data-toggle="tooltip">
+					<i class="fa fa-envelope"></i>
+					<span class="label label-warning">
+					5
+					</span>
+					</a>
+					<a class="btn btn-default btn-sm" data-original-title="Message" data-placement="bottom" data-toggle="tooltip" href="#">
+					<i class="fa fa-comments"></i>
+					<span class="label label-danger">
+					4
+					</span>
+					</a>
+				</div>
+				<div class="btn-group">
+					<a class="btn btn-default btn-sm" data-original-title="Document" data-placement="bottom" data-toggle="tooltip" href="#">
+					<i class="fa fa-file"></i>
+					</a>
+					<a class="btn btn-default btn-sm" data-original-title="Help" data-placement="bottom" data-toggle="modal" href="#helpModal">
+					<i class="fa fa-question"></i>
+					</a>
+				</div>
+				<div class="btn-group">
+					<a class="btn btn-metis-1 btn-sm" data-method="delete" data-original-title="Logout" data-placement="bottom" data-toggle="tooltip" href="/users/sign_out" rel="nofollow"><i class="fa fa-power-off"></i></a>
+				</div>
+			</div>
+		</div><!-- /topnav -->
+		<div class="collapse navbar-collapse navbar-ex1-collapse">
+			<ul class="nav navbar-nav">
+				<li>
+					<a href="/">Dashboard</a>
+				</li>
+				<li>
+					<a href="#">Tables</a>
+				</li>
+				<li>
+					<a href="#">File Manager</a>
+				</li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+					Form Elements <b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+							<a href="#">
+							General
+							</a>
+						</li>
+						<li>
+							<a href="#">
+							Validations
+							</a>
+						</li>
+						<li>
+							<a href="#">
+							WYSIWYG
+							</a>
+						</li>
+						<li>
+							<a href="#">
+							Wizard File Upload
+							</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div><!-- /navbar -->
+	</nav><!-- /Top navigation -->
+	{{partial 'head'}}
+</div>

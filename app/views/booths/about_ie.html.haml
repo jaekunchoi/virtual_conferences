@@ -1,0 +1,27 @@
+%ul.nav.nav-tabs.m-bottom10
+  - if @booth.about_us
+    %li.active
+      %a{"data-toggle" => "tab", href: "#about-content"} About Us
+  - if @booth.products
+    %li
+      %a{"data-toggle" => "tab", href: "#products-content"} Products & Services
+.tab-content
+  - if @booth.about_us
+    #about-content.tab-pane.modal-overflow-scroll.fade.in.active= raw @booth.about_us
+  - if @booth.products
+    #products-content.tab-pane.fade.modal-overflow-scroll
+      .panel-group#accordion
+        - @booth.products.each_with_index do |product, key|
+          .panel.panel-default
+            .panel-heading
+              %h4.panel-title
+                %a{"data-toggle" => "collapse", "data-parent" => "#accordion", :href => "#collapse#{key}"}
+                  - if product.uploaded_file
+                    %img{:src => product.uploaded_file.assets.url, :style => "max-width: 100px; max-height: 75px;"}
+                  = product.name
+            .panel-collapse.collapse{ :id => "collapse#{key}" }
+              .panel-body
+                = image_tag(product.uploaded_file.assets.url, class: "img-rounded", style: "max-width: 200px;") if product.uploaded_file
+                %p= raw product.description
+              %hr
+              = link_to 'Product link', product.product_url, target: '_blank' if !product.product_url.blank?

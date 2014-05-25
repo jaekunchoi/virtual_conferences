@@ -1,0 +1,18 @@
+.chat_widget{:title => "Webcast Q&A chat", :style => "width: 100%;"}
+  .panel.panel-primary
+    .panel-heading
+      %span Q&A Session
+    .panel-body
+      %ul.chat
+        = sync partial: 'chat_qna_widget', collection: webcast.moderated_chats
+        = sync_new partial: 'chat_qna_widget', resource: ModeratedChat.new, direction: :append
+    .panel-footer
+      = simple_form_for(webcast, url: webcast_moderated_chats_path(webcast), method: :post, remote: true) do |f|
+        .input-group
+          %input#chat-message2.form-control.input-sm{name: "moderated_chat[message]", placeholder: "Type your message here...", type: "text", :disabled => "disabled"}
+          %input{type: "hidden", name: "moderated_chat[from_user_id]", value: "#{current_user.id}"}
+          %input{type: "hidden", name: "moderated_chat[webcast_id]", value: "#{webcast.id}"}
+          %span.input-group-btn
+            %button#btn-chat2.btn.btn-primary.btn-sm{:type => 'submit'}
+              Send
+        = f.error_notification

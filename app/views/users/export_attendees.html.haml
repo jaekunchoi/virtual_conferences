@@ -1,0 +1,50 @@
+.row
+  - box 12, "List users" do
+    %table.table.table-bordered.table-striped.table-condensed.table-hover.dataTable2
+      %thead
+        %tr
+          %th Actions
+          %th Role
+          %th Events
+          %th Email
+          %th Booths
+          %th First name
+          %th Last name
+          %th Position
+          %th Work phone
+          %th Company
+          %th Sign in count
+          %th Current sign in at
+          %th Confirmed at
+          %th Created at
+      %tbody
+        - @users.each do |user|
+          %tr{:class => ("danger" unless user.confirmed_at?)}
+            %td
+              = link_to 'Show', user
+              |
+              = link_to 'Edit', edit_user_path(user)
+              |
+              = link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' }
+            %td
+              %ul.list-unstyled
+                - user.roles.each do |role|
+                  %li= role.name
+            %td
+              - user.events.each do |event| 
+                %span.labelObjectTag
+                  = event.name.to_s
+            %td
+              - user.booths.each do |booth| 
+                %span.labelObjectTag
+                  = booth.name.to_s
+            %td= user.email
+            %td= user.first_name
+            %td= user.last_name
+            %td= user.position
+            %td= user.work_phone
+            %td= user.company
+            %td= user.sign_in_count
+            %td= user.current_sign_in_at
+            %td= user.confirmed_at
+            %td= user.created_at

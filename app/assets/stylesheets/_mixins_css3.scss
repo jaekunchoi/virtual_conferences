@@ -1,0 +1,19 @@
+@mixin css3-mixin($name, $value) {
+  -webkit-#{$name}: #{$value};
+  -moz-#{$name}: #{$value};
+  -ms-#{$name}: #{$value};
+  -o-#{$name}: #{$value};
+  #{$name}: #{$value};
+}
+
+@mixin transition($transition) {
+  @include css3-mixin("transition", $transition)
+}
+
+@mixin border-radius($border-radius) {
+  @include css3-mixin("border-radius", $border-radius)
+}
+
+@mixin box-shadow($shadow) {
+  @include css3-mixin("box-shadow", $shadow)
+}

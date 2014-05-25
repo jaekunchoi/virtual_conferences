@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @asset_type.name
+
+= link_to 'Edit', edit_asset_type_path(@asset_type)
+\|
+= link_to 'Back', asset_types_path

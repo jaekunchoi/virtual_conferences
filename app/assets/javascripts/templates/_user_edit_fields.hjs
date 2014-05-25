@@ -1,0 +1,48 @@
+<div {{bind-attr class=":form-group errors.email:has-error"}}>
+  {{input type="email" value=email class="form-control" placeholder="Email"}}
+  {{#if errors.email }}
+    <span class="help-block">{{format-error errors.email}}</span>
+  {{/if}}
+</div>
+<div {{bind-attr class=":form-group errors.password:has-error"}}>
+  {{input type="password" value=password class="form-control" placeholder="Password"}}
+  {{#if errors.password }}
+    <span class="help-block">{{format-error errors.password}}</span>
+  {{/if}}
+</div>
+<div {{bind-attr class=":form-group errors.title:has-error"}}>
+  {{view Ember.Select content=title class="form-control" prompt="Please select a title"}}
+  {{#if errors.title }}
+    <span class="help-block">{{format-error errors.title}}</span>
+  {{/if}}
+</div>
+<div {{bind-attr class=":form-group errors.first_name:has-error"}}>
+  {{input value=first_name class="form-control" placeholder="First Name"}}
+  {{#if errors.first_name }}
+    <span class="help-block">{{format-error errors.first_name}}</span>
+  {{/if}}
+</div>
+<div {{bind-attr class=":form-group errors.last_name:has-error"}}>
+  {{input value=last_name class="form-control" placeholder="Last Name"}}
+  {{#if errors.last_name }}
+    <span class="help-block">{{format-error errors.last_name}}</span>
+  {{/if}}
+</div>
+<div {{bind-attr class=":form-group errors.position:has-error"}}>
+  {{input value=position class="form-control" placeholder="Position"}}
+  {{#if errors.position }}
+    <span class="help-block">{{format-error errors.position}}</span>
+  {{/if}}
+</div>
+<div {{bind-attr class=":form-group errors.work_phone:has-error"}}>
+  {{input value=work_phone class="form-control" placeholder="Work Phone"}}
+  {{#if errors.work_phone }}
+    <span class="help-block">{{format-error errors.work_phone}}</span>
+  {{/if}}
+</div>
+<div {{bind-attr class=":form-group errors.company:has-error"}}>
+  {{input value=company class="form-control" placeholder="Company"}}
+  {{#if errors.company }}
+    <span class="help-block">{{format-error errors.company}}</span>
+  {{/if}}
+</div>

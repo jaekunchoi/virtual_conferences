@@ -1,0 +1,81 @@
+.row
+  - box 8, "Venue details", {'Edit' => edit_venue_path(@venue), 'Back' => venues_path} do
+    %p
+      %b Name:
+      = @venue.name
+    %p
+      %b User:
+      = @venue.user.email
+    %p
+      %b Event Heading:
+      = @venue.event_welcome_heading
+    %p
+      %b Event Text:
+      #eventText{style:"display: inline-block;"}
+        =raw @venue.event_welcome_text
+    %p
+      %b Background image:
+      = paperclip_image_tag @venue.background_image
+    %p
+      %b Background url:
+      = paperclip_image_tag @venue.top_background
+    %p
+      %b Logo:
+      = paperclip_image_tag @venue.uploaded_file
+    %p
+      %b Main Sponsor Logo:
+      = paperclip_image_tag @venue.main_sponsor_logo
+    %p
+      %b Main Sponsor Link URL:
+      = @venue.main_sponsor_url
+    %p
+      %b Main Sponsor Tagline:
+      = @venue.sponsor_tagline
+    %p
+      %b What's new:
+      = @venue.whats_new
+    %p
+      %b Personal map:
+      = @venue.personal_map
+    %p
+      %b Display webcast rating:
+      = @venue.display_webcast_rating
+    %p
+      %b Display other content rating
+      = @venue.display_other_content_rating
+    %p
+      %b Closed event redirect
+      = @venue.closed_event_redirect
+    %p
+      %b Display on demand status
+      = @venue.display_on_demand_status
+    %p
+      %b Display original broadcast date
+      = @venue.display_original_broadcast_date
+    %p
+      %b Venue reports url
+      = @venue.venue_reports_url
+    %p
+      %b Support message
+      = @venue.support_message
+    %p
+      %b Venue comments
+      = @venue.venue_comments
+    %p
+      %b Colour:
+      = @venue.colour
+
+  - box 4, 'Venue associations' do
+    .row
+      - box 12, 'Venue structure', { 'Create a new hall' => new_venue_hall_path(@venue) }, 'inverse' do
+        - @halls.each do |hall|
+          %ul
+            %li
+              = link_to raw("#{fa_icon('home') if hall.hall_type == 'Main'} #{hall.name}"), hall_path(hall)
+              = render partial: 'hall_structure', locals: { :children_halls => hall.root.descendants.arrange }
+    .row
+      - box 12, 'Events', { 'Create a new event' => new_venue_event_path(@venue) }, 'inverse' do
+        - @venue.events.each do |event|
+          %ul
+            %li
+              = link_to event.name, event

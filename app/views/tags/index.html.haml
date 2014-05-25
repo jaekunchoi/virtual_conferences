@@ -1,0 +1,21 @@
+.row
+  - box 12, "Listing Tags" do
+    %table.table.table-striped.table-bordered.table-hover.dataTable
+      %thead
+        %tr
+          %th Actions
+          %th Name
+          %th Featured
+      %tbody
+        - @tags.each do |tag|
+          %tr
+            %td
+              = link_to 'View', tag
+              |
+              = link_to 'Edit', edit_tag_path(tag)
+              |
+              = link_to 'Delete', tag, :method => :delete, :data => { :confirm => 'Are you sure?' }
+            %td= tag.name
+            %td= boolean_YN(tag.featured)
+
+    = link_to 'New Tag', new_venue_tag_path(@venue), class: 'btn btn-primary'
